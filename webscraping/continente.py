@@ -26,8 +26,9 @@ def get_continente(ean):
 	capacity = (soup.find_all('span', class_='ct-pdp--unit col-pdp--unit'))[0].text
 	capacity = capacity.replace("garrafa ", "")
 	capacity = capacity.replace("\n", "")
-	capacity = capacity.replace(" cl", "")
-	capacity = capacity + "0"
+	if "cl" in capacity:
+		capacity = capacity.replace(" cl", "")
+		capacity = capacity + "0"
 
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
