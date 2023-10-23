@@ -24,6 +24,10 @@ def get_elingles(ean):
 	for i in capacity:
 		if (i.text == "Quantidade líquida:"):
 			capacity = i.next_sibling.text.strip(' ')
+			if "cl" in capacity:
+				capacity = capacity.split(" ")[0] + "0 ml"
+			if "Mililitros" in capacity:
+				capacity = capacity.split(" ")[0] + " ml"
 			break
 
 	website = "elcorteingles"
