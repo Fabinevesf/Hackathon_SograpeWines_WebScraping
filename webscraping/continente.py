@@ -19,4 +19,4 @@ def get_continente(ean):
 	price = soup.find_all('span', class_='ct-price-formatted')[0].text
 	name = soup.find_all('h1', class_='product-name')[0].text
 
-	print(price, name)
+	print(price, name, "continente")
