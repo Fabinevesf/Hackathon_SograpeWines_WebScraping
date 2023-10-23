@@ -29,8 +29,12 @@ def get_garrafeira_soares(ean):
   price = price.replace('\t', '')
   price,currency = find_and_save_character(price, '€')
   price = price.replace(' ', '')
+  price = price.replace('\n', '')
 
-  print("From website " + website)
+  capacity = soup.find_all('div', class_='col-sm-8 column column-info')[4].text
+  capacity
+
+  print("From website - " + website + "\n")
   print("Bottle name" + name)
-  print("Current price is" + price)
-  #print("Bottle capacity is" + capacity)
+  print("Current price is\n" + currency + price)
+  print("Bottle capacity is" + capacity)
