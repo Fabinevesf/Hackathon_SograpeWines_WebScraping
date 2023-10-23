@@ -2,8 +2,6 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-
-
 def find_and_save_character(string, character):
   match = re.search(r'{}'.format(character), string)
   if match:
@@ -31,4 +29,4 @@ def get_garrafeira_soares(ean):
     price,currency = find_and_save_character(price, '€')
     price = price.replace(' ', '')
 
-    print(name, price, currency)
+    print('Name')
