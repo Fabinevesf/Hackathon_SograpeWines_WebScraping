@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+
 def get_continente(ean):
 	url = "https://www.continente.pt/pesquisa/?q=5601012001310"
 	response = requests.get(url)
