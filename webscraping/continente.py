@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 def get_continente(ean):
 	url = "https://www.continente.pt/pesquisa/?q="
-	ean = input('EAN: ')
 	url = url + ean
 	response = requests.get(url)
 
