@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 def get_continente(ean):
-	url = "https://www.continente.pt/pesquisa/?q=5601012001310"
+	url = "https://www.continente.pt/pesquisa/?q="
+	url = url + ean
 	response = requests.get(url)
 
 	soup = BeautifulSoup(response.content, "html.parser")
@@ -24,7 +25,7 @@ def get_continente(ean):
 	capacity = capacity.replace("garrafa ", "")
 
 
-	print("From website" + website)
+	print("From website - "+ website +"\n")
 	print("Bottle name" + name)
 	print("Current price is" + price)
 	print("Bottle capacity is" + capacity)
