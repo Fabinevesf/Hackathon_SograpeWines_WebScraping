@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-
 def get_continente(ean):
 	url = "https://www.continente.pt/pesquisa/?q="
 	url = url + ean
@@ -25,8 +24,10 @@ def get_continente(ean):
 	capacity = (soup.find_all('span', class_='ct-pdp--unit col-pdp--unit'))[0].text
 	capacity = capacity.replace("garrafa ", "")
 
+	origem = (soup.find_all('p', class_='mb-20'))[2].text
 
-	print("From website - "+ website +"\n")
+	print("From website " + website)
 	print("Bottle name" + name)
-	print("Current price is" + price)
 	print("Bottle capacity is" + capacity)
+	print("Current price is" + price)
+	print("Origin / Region" + origem)
