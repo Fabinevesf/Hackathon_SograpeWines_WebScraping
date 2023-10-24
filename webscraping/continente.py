@@ -41,13 +41,13 @@ def get_continente(ean):
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
 	time = time.asctime(time.localtime())
-	print("EAN: " + str(ean))
-	print("Name: " + name)
-	print("Ano: " + str(None))
-	print("Capacidade (em ML): " + bottle_size)
-	print("Link: " + product_link)
-	print("Price: " + price)
-	print("Currency: " + currency)
-	print("Localização: " + origem)
-	print(time)
-	return[ean, "Continente", price, currency, time, origem]
+	
+	try:
+		discount = (soup.find_all('span', class_='ct-product-tile-badge-value--pvpr col-product-tile-badge-value--pvpr'))[0].text
+		discount = 1
+	except:
+		discount = 0
+
+	print(discount)
+
+	return[ean, "Continente", price, discount, currency, time, origem]
