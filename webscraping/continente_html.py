@@ -29,7 +29,6 @@ def get_continente_html(ean):
 	button.click()
 
 	input_field = wait.until(EC.element_to_be_clickable((By.ID, 'coverage-postal-code')))
-	input_field.click()
 	input_field.send_keys('Porto')
 
 	button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="coverage-area-modal"]/div/div/div[2]/div/div[2]/div[2]/form/div/div[2]/div[1]/button[2]')))
