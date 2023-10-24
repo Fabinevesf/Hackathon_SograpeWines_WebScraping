@@ -1,7 +1,7 @@
 from webscraping.continente_html import get_continente_html
 from bs4 import BeautifulSoup
 import requests
-import time
+import datetime
 
 def get_continente(ean):
 	html = get_continente_html(ean)
@@ -29,7 +29,7 @@ def get_continente(ean):
 
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
-	cur_time = time.asctime(time.localtime())
+	cur_time = datetime.datetime.now()
 	
 	try:
 		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
@@ -45,4 +45,4 @@ def get_continente(ean):
 	print(cur_time)
 	print(origem)
 
-	return[ean, "Continente", None, float(price.replace(',', '.')), discount, currency, cur_time, origem]
+	return[ean, "Continente", 0, float(price.replace(',', '.')), discount, currency, cur_time, origem]

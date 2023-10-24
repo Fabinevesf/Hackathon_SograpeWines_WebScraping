@@ -1,6 +1,6 @@
 import mysql.connector
-#from webscraping.continente import get_continente
-#from webscraping.garrafeirasoares import get_garrafeira_soares
+from webscraping.continente import get_continente
+from webscraping.garrafeirasoares import get_garrafeira_soares
 from webscraping.elingles import get_elingles
 
 conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
@@ -13,13 +13,12 @@ eans = cursor.fetchall()
 print(eans)
 for ean in eans:
   print("--------------------------------------------")
-  #get_continente(ean[0])
+  continente = get_continente(ean[0])
+  cursor.execute(sql_insert_statement, continente)
   print("--------------------------------------------")
-  #soares = get_garrafeira_soares(ean[0])
+  soares = get_garrafeira_soares(ean[0])
   print("--------------------------------------------")
   elingles = get_elingles(ean[0])
-  print(elingles)
-  print(sql_insert_statement)
   cursor.execute(sql_insert_statement, elingles)
   print("--------------------------------------------")
 conn.commit()
