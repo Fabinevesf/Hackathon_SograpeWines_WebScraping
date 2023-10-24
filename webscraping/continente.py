@@ -1,10 +1,10 @@
-from webscraping.continente_cookie import get_continente_cookie
+from webscraping.continente_hmlt import get_continente_hmlt
 from bs4 import BeautifulSoup
 import requests
 import time
 
 def get_continente(ean):
-	html = get_continente_cookie(ean)
+	html = get_continente_hmlt(ean)
 	soup = BeautifulSoup(html, "html.parser")
 
 	total = soup.find_all('span', class_='ct-price-formatted')[0].text

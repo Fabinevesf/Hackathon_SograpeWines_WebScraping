@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 import time
 
-def get_continente_cookie(ean):
+def get_continente_html(ean):
 	# Set options
 	options = webdriver.ChromeOptions()
 	options.add_argument('--headless')
