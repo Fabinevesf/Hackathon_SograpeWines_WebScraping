@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+import time
+import requests
 
 #NOME ANO CAPACIDADE EAN WEBSITE LINK PREÇO MOEDA LOCALIZAÇÃO
 
@@ -22,16 +23,17 @@ def get_elingles(ean):
 
 	try:
 		discount = soup.find_all('div', class_='prices-price _before')[0].text
-		discount = discount.split(" ")[0].replace(',', '.')
+		discount = 1
 		price = soup.find_all('div', class_='prices-price _offer')[0].text
 		currency = price.split(" ")[1]
 		price = price.split(" ")[0].replace(',', '.')
-		discount = int((1 - (float(price) / float(discount))) * 100)
+		price = float(price)
 	except:
 		discount = 0
 		price = soup.find_all('div', class_='prices-price _current')[0].text
 		currency = price.split(" ")[1]
-		price = price.split(" ")[0]
+		price = price.split(" ")[0].replace(',', '.')
+		price = float(price)
 
 	capacity = soup.find_all('span', class_='info-key')
 	for i in capacity:
@@ -56,4 +58,4 @@ def get_elingles(ean):
 	print("Discount: " + str(discount) + "%")
 	print("Currency: " + currency)
 	print("Localização: " + str(None))
-	return name, None, capacity, ean, website, product_link, price, currency, None
+	return [ean, "El Corte Ingles", None, price, discount, currency, time.cur_time(), "Portugal"]
