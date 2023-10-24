@@ -47,6 +47,8 @@ def get_elingles(ean):
 
 	website = "elcorteingles"
 
+	img = soup.find_all('img', class_='js-zoom-to-modal-image')[0]['src']
+	img = "https:" + img
 
 	print("Name: " + name)
 	print("Ano: " + str(None))
@@ -58,5 +60,6 @@ def get_elingles(ean):
 	print("Discount: " + str(discount) + "%")
 	print("Currency: " + currency)
 	print("Localização: " + str(None))
+	print("Imagem: " + img)
 	time = datetime.datetime.now()
-	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal"]
+	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal", img]
