@@ -62,4 +62,4 @@ def get_elingles(ean):
 	print("Localização: " + str(None))
 	print("Imagem: " + img)
 	time = datetime.datetime.now()
-	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal", img]
+	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal"]
