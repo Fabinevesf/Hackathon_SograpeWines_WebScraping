@@ -1,18 +1,17 @@
-from webscraping.continente_hmlt import get_continente_hmlt
+from webscraping.continente_cookie import get_continente_cookie
 from bs4 import BeautifulSoup
 import requests
 import time
 
 def get_continente(ean):
-	html = get_continente_hmlt(ean)
-	if html == None:
-		return None
+	html = get_continente_cookie(ean)
 	soup = BeautifulSoup(html, "html.parser")
 
 	total = soup.find_all('span', class_='ct-price-formatted')[0].text
 	total = total.replace('\n', '')
 	currency = total[0]
 	price = total[1::1]
+	discount = 0
 
 	name = soup.find_all('h1', class_='product-name')[0].text
 	name = name.replace("\n", "")
@@ -33,7 +32,8 @@ def get_continente(ean):
 	cur_time = time.asctime(time.localtime())
 	
 	try:
-		discount = (soup.find_all('span', class_='ct-product-tile-badge-value--pvpr col-product-tile-badge-value--pvpr'))[0].text
+		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
+		print(discount)
 		discount = 1
 	except:
 		discount = 0	
@@ -46,4 +46,4 @@ def get_continente(ean):
 	print(cur_time)
 	print(origem)
 
-	return[ean, "Continente", price, discount, currency, cur_time, origem]
+	return[ean, "Continente", None, float(price), discount, currency, cur_time, origem]
