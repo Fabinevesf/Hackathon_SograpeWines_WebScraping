@@ -5,6 +5,8 @@ import time
 
 def get_continente(ean):
 	html = get_continente_hmlt(ean)
+	if html == None:
+		return None
 	soup = BeautifulSoup(html, "html.parser")
 
 	total = soup.find_all('span', class_='ct-price-formatted')[0].text
