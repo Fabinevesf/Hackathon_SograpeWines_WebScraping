@@ -45,8 +45,12 @@ def get_continente_html(ean):
 	url = "https://www.continente.pt/pesquisa/?q=" + ean
 	driver.get(url)
 
-	button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="product-search-results"]/div/div[2]/div[2]/div[1]/div/div/div/div[1]/a/picture/img')))
-	button.click()
+	try:
+		button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="product-search-results"]/div/div[2]/div[2]/div[1]/div/div/div/div[1]/a/picture/img')))
+		button.click()
+	except:
+		print("Product not found")
+		return None
 
 	time.sleep(5)
 
