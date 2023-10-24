@@ -5,3 +5,7 @@ exports.home=function(req,res){
 exports.addProduto=function(req,res){
   res.render('addProduto');
 }
+
+exports.removeProduto=function(req,res){
+  res.render('removeProduto');
+}

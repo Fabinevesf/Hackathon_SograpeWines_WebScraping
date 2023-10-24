@@ -34,6 +34,10 @@ app.get('/addProduto', (req, res) => {
     res.render('addProduto');
 });
 
+app.get('/removeProduto', (req, res) => {
+  res.render('removeProduto');
+});
+
 app.post('/submit', (req, res) => {
     const dados = {
         nomeVinho: req.body.nomeVinho,
@@ -48,6 +52,19 @@ app.post('/submit', (req, res) => {
         if (err) throw err;
         console.log('Dados inseridos com sucesso. ID do registro: ' + results.insertId);
         res.send('Dados recebidos com sucesso e inseridos no banco de dados!');
+    });
+});
+
+app.post('/remove', (req, res) => {
+    const dados = {
+        ean: req.body.ean
+    };
+
+    const query = 'DELETE FROM wines WHERE EAN = ?';
+    connection.query(query, [dados.ean], (err, results) => {
+        if (err) throw err;
+        console.log('Dados removidos com sucesso. ID do registro: ' + results.insertId);
+        res.send('Dados removidos com sucesso!');
     });
 });
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Dashboard de Vinhos</title>
-    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/styles/style.css"> -->
     <style>
         .wine-card {
             border: none;
@@ -48,7 +48,7 @@
             border-radius: 5px;
             margin: 0 10px; /* Maior espaçamento entre os preços das lojas */
             flex: 1;
-            max-width: 150px;
+            max-width: fit-content;
         }
 
         .store-name {
@@ -64,9 +64,32 @@
         .store-currency {
             font-size: 16px; /* Tamanho da moeda um pouco menor */
         }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/addProduto">Adicionar Vinho</a>
+        <a href="/removeProduto">Remover Vinho</a>
+    </div>
     <div class="container">
         <h1>Lista de Vinhos</h1>
         <% for (let wine of wines) { %>
@@ -76,7 +99,7 @@
                     EAN: <%= wine.vinho.EAN %><br>
                     Capacidade: <%= wine.vinho.capacity %> ml<br>
                     Marca: <%= wine.vinho.Brand %><br>
-                    Submarca: <%= wine.vinho.Subbrand %>
+                    Submarca: <%= wine.vinho.Subbrand %><br>    
                 </div>
                 <div class="store-prices">
                     <% const latestPrices = {}; %>
