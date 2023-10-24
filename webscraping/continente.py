@@ -25,20 +25,25 @@ def get_continente(ean):
 	name = name.replace("\n", "")
 
 	capacity = (soup.find_all('span', class_='ct-pdp--unit col-pdp--unit'))[0].text
-	capacity = capacity.replace("garrafa ", "")
-	capacity = capacity.replace("\n", "")
+	bottle_size = capacity.split(" ")[1]
 	if "cl" in capacity:
-		capacity = capacity.replace(" cl", "")
-		capacity = capacity + "0"
+		if "," in capacity:
+			bottle_size = bottle_size.replace(',', '')
+		else:
+			bottle_size = bottle_size + "0"
+	if "lt" in capacity:
+		bottle_size = bottle_size.replace(',', '')
+		bottle_size = bottle_size + "00"
 
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
-
+	time = time.asctime(time.localtime())
 	print("Name: " + name)
 	print("Ano: " + str(None))
-	print("Capacidade (em ML): " + capacity)
+	print("Capacidade (em ML): " + bottle_size)
 	print("EAN: " + str(ean))
 	print("Link: " + product_link)
 	print("Price: " + price)
 	print("Currency: " + currency)
 	print("Localização: " + origem)
+	print(time)
