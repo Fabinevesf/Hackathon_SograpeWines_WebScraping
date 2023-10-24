@@ -8,8 +8,11 @@ def get_continente(ean):
 
 	soup = BeautifulSoup(response.content, "html.parser")
 
-	product = soup.find_all('div', class_='ct-image-container')[0]
-
+	try:
+		product = soup.find_all('div', class_='ct-image-container')[0]
+	except:
+		print("Product Not found")
+		return NULL
 	product_link = product.find_all('a')[0]['href']
 
 	response = requests.get(product_link, cookies={'dwsid':'LT_YtM8_xZLDvEwyRBXjSC6dy1q8yJAAIp0NZvBa_9lRBvwesJi5jtM6UMA741GwX70rTTcG3nFyUSyBS6pH3Q=='})
@@ -38,12 +41,13 @@ def get_continente(ean):
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
 	time = time.asctime(time.localtime())
+	print("EAN: " + str(ean))
 	print("Name: " + name)
 	print("Ano: " + str(None))
 	print("Capacidade (em ML): " + bottle_size)
-	print("EAN: " + str(ean))
 	print("Link: " + product_link)
 	print("Price: " + price)
 	print("Currency: " + currency)
 	print("Localização: " + origem)
 	print(time)
+	return[ean, "Continente", price, currency, time, origem]
