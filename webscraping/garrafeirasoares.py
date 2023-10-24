@@ -45,7 +45,7 @@ def get_garrafeira_soares(ean):
 	
 	print("Name: " + name)
 	print("Ano: None")
-	print("Capacidade: " + capacity)
+	print("Capacidade: ", capacity)
 	print("Current price is" + currency + price)
 	now = datetime.datetime.now()
 	return [now, website, name, price+currency, capacity]
