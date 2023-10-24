@@ -33,7 +33,6 @@ def get_continente(ean):
 	
 	try:
 		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
-		print(discount)
 		discount = 1
 	except:
 		discount = 0	
