@@ -1,6 +1,5 @@
 from webscraping.continente_html import get_continente_html
 from bs4 import BeautifulSoup
-import requests
 import datetime
 
 def get_continente(ean):

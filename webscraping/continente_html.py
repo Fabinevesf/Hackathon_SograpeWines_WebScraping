@@ -8,7 +8,7 @@ import time
 def get_continente_html(ean):
 	# Set options
 	options = webdriver.ChromeOptions()
-	options.add_argument('--headless')
+	#options.add_argument('--headless')
 
 	# Set up the webdriver
 	driver = webdriver.Chrome(options=options)
@@ -18,12 +18,14 @@ def get_continente_html(ean):
 
 	driver.maximize_window()
 
-	wait = WebDriverWait(driver, 10)
+	wait = WebDriverWait(driver, 20)
 	try:
 		button = wait.until(EC.element_to_be_clickable((By.ID, "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")))
 		button.click()
 	except:
 		pass
+
+	time.sleep(1)
 
 	button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="brand-header"]/div[2]/div/div/ul[2]/li[4]/button')))
 	button.click()
@@ -40,7 +42,12 @@ def get_continente_html(ean):
 	button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="confirm-coverage-area-modal"]/div/div/div[2]/div/div[2]/button[2]')))
 	button.click()
 
-	time.sleep(5)
+	while True:
+		try:
+			wait.until(EC.text_to_be_present_in_element((By.XPATH, '//*[@id="brand-header"]/div[2]/div/div/ul[2]/li[4]/button/span[2]'), 'Continente Bom Dia Serpa Pinto'))
+			break
+		except:
+			pass
 
 	url = "https://www.continente.pt/pesquisa/?q=" + ean
 	driver.get(url)
