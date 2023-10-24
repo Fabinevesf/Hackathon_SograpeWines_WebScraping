@@ -1,16 +1,19 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: NovelSansPro,Source Sans Pro,sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
 }
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.wine-card {
+    flex: 0 0 calc(33.33% - 10px); /* Adjust the width as needed */
+    margin: 5px; /* Adjust the margin as needed */
 }
 
 h1 {
@@ -34,4 +37,79 @@ ul {
 ul li {
     margin: 0;
     padding: 0;
+}
+
+
+/*TOPBAR*/
+.topbar h1 {
+    font-size: 24px;
+    color: lightgray;
+    /* Cor de texto branca */
+    margin: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff; /* Defina a cor do texto desejada */
+    padding: 10px 0;
+}
+
+/* Estilo para os botões na topbar */
+.button-bar .button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #B3B3B3;
+    /* Cor secundária da Sogrape */
+    color: #7A1435;
+    /* Cor primária da Sogrape */
+    text-decoration: none;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-bar .button.active {
+    background-color: #7A1435;
+    /* Cor primária da Sogrape para o botão ativo */
+    color: #FFFFFF;
+    /* Texto branco para o botão ativo */
+}
+
+.button-bar .button:hover {
+    background-color: #B3B3B3;
+    /* Cor secundária da Sogrape ao passar o mouse */
+    color: #7A1435;
+    /* Cor primária da Sogrape ao passar o mouse */
+}
+
+.logo-left,
+.logo-right {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-left img,
+.logo-right img {
+    height: 100px;
+    width: auto;
+    border-radius: 5px;
+}
+
+.button-bar {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.button {
+    margin: 10px;
+}
+
+.top-bar-container
+{
+    background: rgb(175,91,45);
+    background: linear-gradient(0deg, rgba(175,91,45,1) 39%, rgba(122,20,53,1) 100%);
 }

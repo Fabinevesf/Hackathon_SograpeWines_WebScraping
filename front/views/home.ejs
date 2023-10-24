@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard de Vinhos</title>
     <link rel="icon" href="airplane_icon_257083.ico">
-    <!-- <link rel="stylesheet" type="text/css" href="/styles/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
         .wine-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; /* Distribui os cartões horizontalmente */
+            justify-content: space-between;
+            /* Distribui os cartões horizontalmente */
         }
+
         .wine-card {
             border: none;
             border-radius: 12px;
@@ -29,45 +29,55 @@
             min-width: fit-content;
             max-width: 19.6%;
         }
-        body
-        {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
+
         .wine-card {
             border: none;
             border-radius: 12px;
-            margin: 20px; /* Maior espaçamento entre cartões */
+            margin: 20px;
+            /* Maior espaçamento entre cartões */
             padding: 20px;
             background: linear-gradient(to bottom right, #CF203E, #E9423E);
             color: #fff;
             box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centralize horizontalmente */
-            justify-content: center; /* Centralize verticalmente */
-            text-align: center; /* Alinhe o texto no centro */
+            align-items: center;
+            /* Centralize horizontalmente */
+            justify-content: center;
+            /* Centralize verticalmente */
+            text-align: center;
+            /* Alinhe o texto no centro */
             min-width: fit-content;
-            max-width: 19.6%; /*Mexer nisto para aumentar ou diminuir o tamanho do card*/
+            max-width: 19.6%;
+            /*Mexer nisto para aumentar ou diminuir o tamanho do card*/
         }
 
         .wine-name {
-            font-size: 26px; /* Texto do nome do vinho maior e mais expressivo */
-            font-weight: bold; /* Texto em negrito */
-            margin-bottom: 15px; /* Maior espaçamento abaixo do nome do vinho */
+            font-size: 26px;
+            /* Texto do nome do vinho maior e mais expressivo */
+            font-weight: bold;
+            /* Texto em negrito */
+            margin-bottom: 15px;
+            /* Maior espaçamento abaixo do nome do vinho */
         }
 
         .wine-info {
-            font-size: 18px; /* Texto informativo maior */
-            margin-bottom: 15px; /* Maior espaçamento abaixo das informações */
+            font-size: 18px;
+            /* Texto informativo maior */
+            margin-bottom: 15px;
+            /* Maior espaçamento abaixo das informações */
         }
 
         .store-prices {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Centralize horizontalmente */
-            align-items: center; /* Centralize verticalmente */
+            justify-content: center;
+            /* Centralize horizontalmente */
+            align-items: center;
+            /* Centralize verticalmente */
             width: fit-content;
-            margin-top: 10px; /* Maior espaçamento acima dos preços das lojas */
+            margin-top: 10px;
+            /* Maior espaçamento acima dos preços das lojas */
         }
 
         .store-price {
@@ -75,80 +85,185 @@
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
-            margin: 0 10px; /* Maior espaçamento entre os preços das lojas */
+            margin: 0 10px;
+            /* Maior espaçamento entre os preços das lojas */
             flex: 1;
             max-width: fit-content;
         }
 
         .store-name {
             font-weight: bold;
-            font-size: 18px; /* Texto do nome da loja maior e mais expressivo */
-            margin-bottom: 10px; /* Maior espaçamento abaixo do nome da loja */
+            font-size: 18px;
+            /* Texto do nome da loja maior e mais expressivo */
+            margin-bottom: 10px;
+            /* Maior espaçamento abaixo do nome da loja */
         }
 
         .store-price-value {
-            font-size: 20px; /* Preço maior e mais expressivo */
+            font-size: 20px;
+            /* Preço maior e mais expressivo */
         }
 
         .store-currency {
-            font-size: 16px; /* Tamanho da moeda um pouco menor */
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
+            font-size: 16px;
+            /* Tamanho da moeda um pouco menor */
         }
     </style>
 </head>
+
 <body>
-    <div class="navbar">
-        <a href="/addProduto">Adicionar Vinho</a>
-        <a href="/removeProduto">Remover Vinho</a>
+    <div class="top-bar-container">
+        <div class="topbar">
+            <div class="logo-left">
+                <img src="/images/sogrape.png" alt="Sogrape">
+            </div>
+            <h1 style="padding: 10px; font-size: 70px; text-align: center;">Wine Web Scrapper</h1>
+            <div class="logo-right">
+                <img src="/images/42porto.jpeg" alt="42 Porto">
+            </div>
+        </div>
+        <div class="button-bar">
+            <a href="/" class="button active">Dashboard</a>
+            <a href="/addProduto" class="button">Adicionar Produto</a>
+            <a href="/removeProduto" class="button">Remover Produto</a>
+        </div>
     </div>
+
+
+
+    <h1>Lista de Produtos</h1>
     <div class="container">
-        <h1>Lista de Vinhos</h1>
         <% for (let wine of wines) { %>
             <a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">
-            <div class="wine-card">
-                <div class="wine-name"><%= wine.vinho.name %></div>
-                <div class="wine-info">          
-                    <b>Marca:</b> <%= wine.vinho.Brand %><br>
-                    <b>Submarca:</b> <%= wine.vinho.Subbrand %><br>  
-                    <b>Capacidade:</b> <%= wine.vinho.capacity %> ml<br>
-                    <b>EAN:</b> <%= wine.vinho.EAN %><br>
+                <div class="wine-card">
+                    <div class="wine-name">
+                        <%= wine.vinho.name %>
+                    </div>
+                    <div class="wine-info">
+                        <b>Marca:</b>
+                        <%= wine.vinho.Brand %><br>
+                            <b>Submarca:</b>
+                            <%= wine.vinho.Subbrand %><br>
+                                <b>Capacidade:</b>
+                                <%= wine.vinho.capacity %> ml<br>
+                                    <b>EAN:</b>
+                                    <%= wine.vinho.EAN %><br>
+                    </div>
+                    <div class="store-prices">
+                        <% const latestPrices={}; %>
+                            <% for (let store of wine.loja) { %>
+                                <% if (!latestPrices[store.StoreName] || new Date(store.Date)> new
+                                    Date(latestPrices[store.StoreName].Date)) { %>
+                                    <% latestPrices[store.StoreName]=store; %>
+                                        <% } %>
+                                            <% } %>
+                                                <% for (let storeName in latestPrices) { %>
+                                                    <div class="store-price">
+                                                        <div class="store-name">
+                                                            <%= storeName %>
+                                                        </div>
+                                                        <div class="store-price-value">
+                                                            <%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                    </div>
                 </div>
-                <div class="store-prices">
-                    <% const latestPrices = {}; %>
-                    <% for (let store of wine.loja) { %>
-                        <% if (!latestPrices[store.StoreName] || new Date(store.Date) > new Date(latestPrices[store.StoreName].Date)) { %>
-                            <% latestPrices[store.StoreName] = store; %>
-                        <% } %>
-                    <% } %>
-                    <% for (let storeName in latestPrices) { %>
-                        <div class="store-price">
-                            <div class="store-name"><%= storeName %></div>
-                            <div class="store-price-value"><%= latestPrices[storeName].Price %></div>
-                            <div class="store-currency"><%= latestPrices[storeName].Currency %></div>
-                        </div>
-                    <% } %>
-                </div>
-            </div>
-        </a>
-        <% } %>
+            </a>
+            <% } %>
     </div>
+
+    <label for="column-filter">Filtrar por coluna:</label>
+    <select id="column-filter">
+        <option value="0">Nome</option>
+        <option value="1">Marca</option>
+        <option value="2">Submarca</option>
+        <option value="3">Capacidade (ml)</option>
+        <option value="4">EAN</option>
+        <option value="5">Loja</option>
+        <option value="6">Preço</option>
+    </select>
+    
+    <label for="value-filter">Escolha um valor:</label>
+    <select id="value-filter">
+        <!-- Aqui você pode adicionar os valores possíveis dinamicamente usando JavaScript -->
+    </select>
+    <table id="wine-table" class="display">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Submarca</th>
+                <th>Capacidade (ml)</th>
+                <th>EAN</th>
+                <th>Loja</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let wine of wines) { %>
+                <% const latestPrices = {}; %>
+                <% for (let store of wine.loja) { %>
+                    <% if (!latestPrices[store.StoreName] || new Date(store.Date) > new Date(latestPrices[store.StoreName].Date)) { %>
+                        <% latestPrices[store.StoreName] = store; %>
+                    <% } %>
+                <% } %>
+                <% for (let storeName in latestPrices) { %>
+                    <tr>
+                        <td><%= wine.vinho.name %></td>
+                        <td><%= wine.vinho.Brand %></td>
+                        <td><%= wine.vinho.Subbrand %></td>
+                        <td><%= wine.vinho.capacity %></td>
+                        <td><%= wine.vinho.EAN %></td>
+                        <td><%= storeName %></td>
+                        <td><%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %></td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Inclua o CSS do DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script>
+        $(document).ready(function () {
+    var table = $('#wine-table').DataTable({
+        select: true,  // Habilitar a extensão DataTables Select
+    });
+
+    $('#column-filter').on('change', function () {
+        var column = $(this).val();
+        var uniqueValues = table.column(column).data().unique().sort();
+
+        // Limpar a caixa de seleção de valores
+        $('#value-filter').empty();
+
+        // Preencher a caixa de seleção com os valores únicos da coluna
+        $.each(uniqueValues, function (i, value) {
+            $('#value-filter').append($('<option>', {
+                value: value,
+                text: value
+            }));
+        });
+
+        // Limpar o filtro da coluna quando a coluna muda
+        table.column(column).search('').draw();
+    });
+
+    $('#value-filter').on('change', function () {
+        var column = $('#column-filter').val();
+        var value = $(this).val();
+        table.column(column).search(value).draw();
+    });
+});
+    </script>
+    
+    
+    
+    
 </body>
+
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <title>Formulário de Vinho</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             margin: 0;
             padding: 0;
@@ -53,33 +53,26 @@
         button:hover {  
             background-color: #630149; /* Cor mais escura da Sogrape para hover */
         }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/removeProduto">Remover Vinho</a>
+    <div class="top-bar-container">
+        <div class="topbar">
+            <div class="logo-left">
+                <img src="/images/sogrape.png" alt="Sogrape">
+            </div>
+            <h1 style="padding: 10px; font-size: 70px; text-align: center;">Wine Web Scrapper</h1>
+            <div class="logo-right">
+                <img src="/images/42porto.jpeg" alt="42 Porto">
+            </div>
+        </div>
+        <div class="button-bar">
+            <a href="/" class="button">Dashboard</a>
+            <a href="/addProduto" class="button active">Adicionar Produto</a>
+            <a href="/removeProduto" class="button">Remover Produto</a>
+        </div>
     </div>
-    <h1>Formulário de Vinho</h1>
+    <h1>Adicionar produto</h1>
     <form action="/submit" method="POST">
         <label for="nomeVinho">Nome do Vinho:</label>
         <input type="text" id="nomeVinho" name="nomeVinho" required>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <title>Preços do Vinho</title>
     <style>
         .store-card {
@@ -24,9 +25,27 @@
         .date {
             color: #777;
         }
+        /* Estilo para o título na topbar */
+    
     </style>
 </head>
 <body>
+    <div class="top-bar-container">
+        <div class="topbar">
+            <div class="logo-left">
+                <img src="/images/sogrape.png" alt="Sogrape">
+            </div>
+            <h1 style="padding: 10px; font-size: 70px; text-align: center;">Wine Web Scrapper</h1>
+            <div class="logo-right">
+                <img src="/images/42porto.jpeg" alt="42 Porto">
+            </div>
+        </div>
+        <div class="button-bar">
+            <a href="/" class="button">Dashboard</a>
+            <a href="/addProduto" class="button">Adicionar Produto</a>
+            <a href="/removeProduto" class="button">Remover Produto</a>
+        </div>
+    </div>
     <h1>Preços do Vinho em Diferentes Lojas</h1>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
