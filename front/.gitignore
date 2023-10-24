@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard de Vinhos</title>
+</head>
+<body>
+    <h1>Lista de Vinhos</h1>
+    <ul>
+        <% for (let wine of wines) { %>
+            <li>
+                <h3><%= wine.vinho.name %></h3>
+                <p>EAN: <%= wine.vinho.EAN %></p>
+                <h4>Preços por Loja:</h4>
+                <ul>
+                    <% for (let store of wine.loja) { %>
+                        <li>
+                            Loja: <%= store.StoreName %><br>
+                            Preço: <%= store.Price %> <%= store.Currency %><br>
+                            Data: <%= new Date(store.Date).toLocaleString() %><br>
+                        </li>
+                    <% } %>
+                </ul>
+            </li>
+        <% } %>
+    </ul>
+</body>
+</html>

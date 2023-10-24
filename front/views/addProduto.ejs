@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Vinho</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #781e5b; /* Cor da Sogrape */
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #781e5b; /* Cor da Sogrape */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #630149; /* Cor mais escura da Sogrape para hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Vinho</h1>
+    <form action="/submit" method="POST">
+        <label for="nomeVinho">Nome do Vinho:</label>
+        <input type="text" id="nomeVinho" name="nomeVinho" required>
+
+        <label for="capacidade">Capacidade (ml):</label>
+        <input type="number" id="capacidade" name="capacidade" required>
+
+        <label for="ean">EAN:</label>
+        <input type="text" id="ean" name="ean" required>
+
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required>
+
+        <label for="submarca">Submarca:</label>
+        <input type="text" id="submarca" name="submarca" required>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
