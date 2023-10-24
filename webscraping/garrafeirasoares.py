@@ -1,6 +1,7 @@
 import requests
 import re
 from bs4 import BeautifulSoup
+import datetime
 
 def find_and_save_character(string, character):
   match = re.search(r'{}'.format(character), string)
@@ -26,15 +27,17 @@ def get_garrafeira_soares(ean):
   soup = BeautifulSoup(response.content, "html.parser")
   price = soup.find_all('h2', class_='clearfix')[0].text
   name = soup.find_all('div', class_='name clearfix')[0].text
-  price = price.replace('\t', '')
+  name = name.strip()
   price,currency = find_and_save_character(price, '€')
-  price = price.replace(' ', '')
-  price = price.replace('\n', '')
+  price = price.strip()
+  currency = currency.strip()
 
   capacity = soup.find_all('div', class_='col-sm-8 column column-info')[4].text
-  capacity
+  capacity = capacity.strip()
 
   print("From website - " + website + "\n")
   print("Bottle name" + name)
   print("Current price is\n" + currency + price)
   print("Bottle capacity is" + capacity)
+  now = datetime.datetime.now()
+  return [now, name, price+currency, capacity]
