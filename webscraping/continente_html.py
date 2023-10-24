@@ -2,6 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from bs4 import BeautifulSoup
 import time
 
 def get_continente_html(ean):
@@ -45,13 +46,15 @@ def get_continente_html(ean):
 	url = "https://www.continente.pt/pesquisa/?q=" + ean
 	driver.get(url)
 
-	try:
-		button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="product-search-results"]/div/div[2]/div[2]/div[1]/div/div/div/div[1]/a/picture/img')))
-		button.click()
-	except:
-		print("Product not found")
-		return None
+	soup = BeautifulSoup(driver.page_source, "html.parser")
 
-	time.sleep(5)
+	products = soup.find_all('div', class_='product')
+	if len(products) == 0:
+		driver.quit()
+		print("No products found")
+		return None
+	product = products[0]
+	url = product.find_all('a')[0]['href']
+	driver.get(url)
 
 	return driver.page_source

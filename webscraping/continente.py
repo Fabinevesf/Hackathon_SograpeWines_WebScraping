@@ -1,10 +1,10 @@
-from webscraping.continente_cookie import get_continente_cookie
+from webscraping.continente_html import get_continente_html
 from bs4 import BeautifulSoup
 import requests
 import time
 
 def get_continente(ean):
-	html = get_continente_cookie(ean)
+	html = get_continente_html(ean)
 	soup = BeautifulSoup(html, "html.parser")
 
 	total = soup.find_all('span', class_='ct-price-formatted')[0].text
@@ -45,4 +45,4 @@ def get_continente(ean):
 	print(cur_time)
 	print(origem)
 
-	return[ean, "Continente", None, float(price), discount, currency, cur_time, origem]
+	return[ean, "Continente", None, float(price.replace(',', '.')), discount, currency, cur_time, origem]
