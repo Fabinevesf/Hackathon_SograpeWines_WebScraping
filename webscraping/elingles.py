@@ -20,6 +20,19 @@ def get_elingles(ean):
 	if (name.endswith(" ")):
 		name = name[:-1]
 
+	try:
+		discount = soup.find_all('div', class_='prices-price _before')[0].text
+		discount = discount.split(" ")[0].replace(',', '.')
+		price = soup.find_all('div', class_='prices-price _offer')[0].text
+		currency = price.split(" ")[1]
+		price = price.split(" ")[0].replace(',', '.')
+		discount = int((1 - (float(price) / float(discount))) * 100)
+	except:
+		discount = 0
+		price = soup.find_all('div', class_='prices-price _current')[0].text
+		currency = price.split(" ")[1]
+		price = price.split(" ")[0]
+
 	capacity = soup.find_all('span', class_='info-key')
 	for i in capacity:
 		if (i.text == "Quantidade líquida:"):
@@ -31,9 +44,7 @@ def get_elingles(ean):
 			break
 
 	website = "elcorteingles"
-	price = soup.find_all('div', class_='prices-price _current')[0].text
-	currency = price.split(" ")[1]
-	price = price.split(" ")[0]
+
 
 	print("Name: " + name)
 	print("Ano: " + str(None))
@@ -42,6 +53,7 @@ def get_elingles(ean):
 	print("Website: " + website)
 	print("Link: " + product_link)
 	print("Price: " + price)
+	print("Discount: " + str(discount) + "%")
 	print("Currency: " + currency)
 	print("Localização: " + str(None))
 	return name, None, capacity, ean, website, product_link, price, currency, None
