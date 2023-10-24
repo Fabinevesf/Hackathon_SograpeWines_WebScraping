@@ -13,31 +13,39 @@ def find_and_save_character(string, character):
     return string, None
 
 def get_garrafeira_soares(ean):
-  url = "https://www.garrafeirasoares.pt/pt/resultado-da-pesquisa_36.html?term=" + str(ean)
-  response = requests.get(url)
-  website = "Garrafeira Soares"
+	url = "https://www.garrafeirasoares.pt/pt/resultado-da-pesquisa_36.html?term=" + str(ean)
+	response = requests.get(url)
+	website = "Garrafeira Soares"
 
-  soup = BeautifulSoup(response.content, "html.parser")
-  link = soup.find_all('script')[0]
-  url_match = re.search(r"location='(.*?)'", link.text)
-  url = url_match.group(1)
+	soup = BeautifulSoup(response.content, "html.parser")
+	link = soup.find_all('script')[0]
+	url_match = re.search(r"location='(.*?)'", link.text)
+	url = url_match.group(1)
 
-  response = requests.get(url)
-  
-  soup = BeautifulSoup(response.content, "html.parser")
-  price = soup.find_all('h2', class_='clearfix')[0].text
-  name = soup.find_all('div', class_='name clearfix')[0].text
-  name = name.strip()
-  price,currency = find_and_save_character(price, '€')
-  price = price.strip()
-  currency = currency.strip()
+	response = requests.get(url)
 
-  capacity = soup.find_all('div', class_='title')[0].text
-  capacity = capacity.strip()
+	soup = BeautifulSoup(response.content, "html.parser")
+	price = soup.find_all('h2', class_='clearfix')[0].text
+	name = soup.find_all('div', class_='name clearfix')[0].text
+	name = name.strip()
+	price,currency = find_and_save_character(price, '€')
+	price = price.strip()
+	currency = currency.strip()
 
-  print("From website - " + website + "\n")
-  print("Bottle name" + name)
-  print("Current price is\n" + currency + price)
-  print("Bottle capacity is" + capacity)
-  now = datetime.datetime.now()
-  return [now, website, name, price+currency, capacity]
+	capacity = soup.find_all('div', class_='col-sm-4 column column-head')
+	for i in capacity:
+		if ("Capacidade" in i.text):
+			capacity = i.find_next_sibling()
+			capacity = capacity.text
+			capacity = capacity.replace('\n','')
+			capacity = float(capacity.split(' ')[0])
+			capacity *= 1000
+			capacity = int(capacity)
+			break
+	
+	print("Name: " + name)
+	print("Ano: None")
+	print("Capacidade: " + capacity)
+	print("Current price is" + currency + price)
+	now = datetime.datetime.now()
+	return [now, website, name, price+currency, capacity]
