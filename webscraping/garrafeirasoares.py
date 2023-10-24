@@ -15,7 +15,7 @@ def find_and_save_character(string, character):
 def get_garrafeira_soares(ean):
 	url = "https://www.garrafeirasoares.pt/pt/resultado-da-pesquisa_36.html?term=" + str(ean)
 	response = requests.get(url)
-	website = "Garrafeira Soares"
+	StoreName = "Garrafeira Soares"
 
 	soup = BeautifulSoup(response.content, "html.parser")
 	link = soup.find_all('script')[0]
@@ -24,12 +24,14 @@ def get_garrafeira_soares(ean):
 
 	response = requests.get(url)
 
+	discount = 0
 	soup = BeautifulSoup(response.content, "html.parser")
 	price = soup.find_all('h2', class_='clearfix')[0].text
 	name = soup.find_all('div', class_='name clearfix')[0].text
 	name = name.strip()
 	price,currency = find_and_save_character(price, '€')
 	price = price.strip()
+	price = price.replace(',','.')
 	currency = currency.strip()
 
 	capacity = soup.find_all('div', class_='col-sm-4 column column-head')
@@ -43,9 +45,16 @@ def get_garrafeira_soares(ean):
 			capacity = int(capacity)
 			break
 	
+	try:
+		discount = (soup.find_all('span', class_='discount'))[0].text
+		discount = 1
+	except:
+		discount = 0	
+	
 	print("Name: " + name)
 	print("Ano: None")
 	print("Capacidade: ", capacity)
 	print("Current price is" + currency + price)
+	print(discount)
 	now = datetime.datetime.now()
-	return [now, website, name, price+currency, capacity]
+	return [ean, StoreName, "0", str(price), str(discount), currency, str(now), 'Portugal']

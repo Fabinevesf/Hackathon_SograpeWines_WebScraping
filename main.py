@@ -17,6 +17,8 @@ for ean in eans:
   cursor.execute(sql_insert_statement, continente)
   print("--------------------------------------------")
   soares = get_garrafeira_soares(ean[0])
+  print(soares)
+  cursor.execute(sql_insert_statement, soares)
   print("--------------------------------------------")
   elingles = get_elingles(ean[0])
   cursor.execute(sql_insert_statement, elingles)
