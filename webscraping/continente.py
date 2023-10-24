@@ -1,4 +1,4 @@
-from webscraping.continente_hmlt import get_continente_hmlt
+from webscraping.continente_html import get_continente_html
 from bs4 import BeautifulSoup
 import requests
 import time

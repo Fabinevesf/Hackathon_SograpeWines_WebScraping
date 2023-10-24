@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import time
+import datetime
 import requests
 
 #NOME ANO CAPACIDADE EAN WEBSITE LINK PREÇO MOEDA LOCALIZAÇÃO
@@ -54,8 +54,9 @@ def get_elingles(ean):
 	print("EAN: " + str(ean))
 	print("Website: " + website)
 	print("Link: " + product_link)
-	print("Price: " + price)
+	print("Price: ", price)
 	print("Discount: " + str(discount) + "%")
 	print("Currency: " + currency)
 	print("Localização: " + str(None))
-	return [ean, "El Corte Ingles", None, price, discount, currency, time.cur_time(), "Portugal"]
+	time = datetime.datetime.now()
+	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal"]
