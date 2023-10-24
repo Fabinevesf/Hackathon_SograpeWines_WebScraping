@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preços do Vinho</title>
+    <style>
+        .store-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            display: inline-block;
+            width: 300px;
+        }
+        .store-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 18px;
+        }
+        .date {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Preços do Vinho em Diferentes Lojas</h1>
+
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+   
+    <script>
+        // Dados JSON com os preços
+        const data = <%- JSON.stringify(resultado[0]) %>;
+        const vinho = <%- JSON.stringify(vinho) %>[0];
+        console.log(vinho);
+        // Extrair nomes únicos das lojas
+        const storeNames = [...new Set(data.lojas.map(loja => loja.StoreName))];
+
+        // Preparar dados para o gráfico
+        const chartData = storeNames.map(storeName => ({
+            type: "line",
+            showInLegend: true,
+            name: storeName,
+            dataPoints: data.lojas
+                .filter(loja => loja.StoreName === storeName)
+                .map(loja => ({
+                    x: new Date(loja.Date),
+                    y: loja.Price
+                }))
+        }));
+
+        // Configuração do gráfico
+        const chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Evolução dos Preços por Loja"
+            },
+            axisX: {
+                title: "Data"
+            },
+            axisY: {
+                title: "Preço (€)"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer"
+            },
+            data: chartData
+        });
+
+        // Renderizar o gráfico
+        chart.render();
+    </script>
+</body>
+</html>
