@@ -10,12 +10,13 @@ cursor = conn.cursor()
 sql_create_table_statement = """CREATE TABLE data (
   id INT NOT NULL AUTO_INCREMENT,
   date_time DATETIME NOT NULL,
+  loja VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   price VARCHAR(255) NOT NULL,
   capacidade VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );"""
-sql_insert_statement = """INSERT INTO data (date_time, name, price, capacidade) VALUES (%s, %s, %s, %s)"""
+sql_insert_statement = """INSERT INTO data (date_time, loja, name, price, capacidade) VALUES (%s, %s, %s, %s, %s)"""
 #cursor.execute(sql_create_table_statement)
 print(ean)
 print("--------------------------------------------")

@@ -32,7 +32,7 @@ def get_garrafeira_soares(ean):
   price = price.strip()
   currency = currency.strip()
 
-  capacity = soup.find_all('div', class_='col-sm-8 column column-info')[4].text
+  capacity = soup.find_all('div', class_='title')[0].text
   capacity = capacity.strip()
 
   print("From website - " + website + "\n")
@@ -40,4 +40,4 @@ def get_garrafeira_soares(ean):
   print("Current price is\n" + currency + price)
   print("Bottle capacity is" + capacity)
   now = datetime.datetime.now()
-  return [now, name, price+currency, capacity]
+  return [now, website, name, price+currency, capacity]
