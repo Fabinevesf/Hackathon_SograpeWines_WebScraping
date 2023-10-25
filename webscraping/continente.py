@@ -48,6 +48,8 @@ def get_continente(ean):
 	except:
 		discount = 0
 
+	img = soup.find_all('img', class_='ct-product-image')[0]['src']
+
 	#print(ean)
 	#print(name)
 	#print(price)

@@ -44,4 +44,6 @@ def	get_auchan(ean):
 	except:
 		discount = 0
 
+	img = soup.find_all('img', class_='zoomImg')[0]['src']
+
 	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), "Portugal", product_link]
