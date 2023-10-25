@@ -1,10 +1,22 @@
-from webscraping.continente_html import get_continente_html
 from bs4 import BeautifulSoup
 import datetime
+import requests
 
 def get_continente(ean):
-	html = get_continente_html(ean)
-	soup = BeautifulSoup(html, "html.parser")
+	url = "https://www.continente.pt/pesquisa/?q=" + str(ean)
+
+	response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
+	soup = BeautifulSoup(response.content, "html.parser")
+
+	product_list = soup.find_all('div', class_='results-section')[0]
+	try:
+		products = product_list.find_all('div', class_='product')
+		product_link = products[0].find_all('a')[0]['href']
+	except:
+		raise Exception("Product not found")
+	
+	response = requests.get(product_link, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
+	soup = BeautifulSoup(response.content, "html.parser")
 
 	total = soup.find_all('span', class_='ct-price-formatted')[0].text
 	total = total.replace('\n', '')
@@ -36,12 +48,12 @@ def get_continente(ean):
 	except:
 		discount = 0
 
-	# print(ean)
-	# print(name)
-	# print(price)
-	# print(discount)
-	# print(currency)
-	# print(cur_time)
-	# print(origem)
+	#print(ean)
+	#print(name)
+	#print(price)
+	#print(discount)
+	#print(currency)
+	#print(cur_time)
+	#print(origem)
 
 	return[ean, "Continente", 0, float(price.replace(',', '.')), discount, currency, cur_time, origem]
