@@ -48,11 +48,11 @@ def get_pvineyard(ean):
 			year = None
 	cur_time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
 
-	print(ean)
-	print(price)
-	print(discount)
-	print(cur_time)
-	print(capacity)
-	print(year)
+	# print(ean)
+	# print(price)
+	# print(discount)
+	# print(cur_time)
+	# print(capacity)
+	# print(year)
 
 	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal"]
