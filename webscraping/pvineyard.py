@@ -48,4 +48,4 @@ def get_pvineyard(ean):
 	#print(capacity)
 	#print(year)
 
-	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal"]
+	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal", product_link]
