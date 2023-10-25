@@ -2,12 +2,15 @@ import mysql.connector
 import schedule
 from datetime import datetime
 import time
+from prettytable import PrettyTable
 
 from webscraping.continente import get_continente
 from webscraping.garrafeirasoares import get_garrafeira_soares
 from webscraping.elingles import get_elingles
 from webscraping.pvineyard import get_pvineyard
-from prettytable import PrettyTable
+from webscraping.granvine import get_granvine
+from webscraping.auchan import get_auchan
+
 x = PrettyTable()
 x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location"]
 sql_EAN_Query = "SELECT EAN FROM wines"
@@ -61,6 +64,22 @@ def main():
 			cursor.execute(sql_insert_statement, pvineyard)
 		except Exception as e:
 			print(time_get() + ' Failed to scrape Portugal Vineyards')
+			print("Message error: " + str(e))
+			pass
+		try:
+			granvine = get_granvine(ean[0])
+			x.add_row(granvine)
+			cursor.execute(sql_insert_statement, granvine)
+		except Exception as e:
+			print(time_get() + ' Failed to scrape Granvine')
+			print("Message error: " + str(e))
+			pass
+		try:
+			auch = get_auchan(ean[0])
+			x.add_row(auch)
+			cursor.execute(sql_insert_statement, auch)
+		except Exception as e:
+			print(time_get() + ' Failed to scrape Granvine')
 			print("Message error: " + str(e))
 			pass
 		print(x)
