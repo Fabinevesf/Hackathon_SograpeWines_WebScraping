@@ -34,26 +34,69 @@
     
     </style>
      <style>
+
+        .dashboard {
+            margin-top: 100px;
+            margin-bottom: 200px;
+            margin-right: 100px;
+            margin-left: 80px;
+            border: 5px solid rgba(255, 145, 0, 0.808);
+            border-radius: 20px;
+}
+
         .wine-container {
-            display: flex;
+            border: none;
+            border-radius: 12px;
+            margin: 20px;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
             align-items: center;
-            padding: 51px 115px 51px 115px;
-            background-color: #BFBAB8;
-            
+            justify-content: center;
+            text-align: center;
+            min-width: fit-content;
+            border: 2px solid rgba(255, 166, 51, 0.493);
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif
+        }
+        .wine-container {
+             display: flex;
+             flex-wrap: wrap;
+             border-color: #fbead4;
+             background-color: #ebe6e0;
+             color: #f3e3ca;            
         }
 
         .wine-image {
             max-width: 500px; /* Define o tamanho máximo da imagem */
-        }
+            display: grid;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+}
 
         .wine-details {
-            margin-left: 52px; /* Espaço entre a imagem e os detalhes */
-            padding: 10px 0 30px;
+            margin: 50px 50px 30px 20px; /* Espaço entre a imagem e os detalhes */
+            padding: 10px 20rem 30px 50px;
             background-color:#f2ece9;
+            color: black;
+            border: 2px solid rgb(160, 155, 155);
+            border-radius: 50px 20px;
         }
 
         h2 {
             margin: 0; /* Remove margens padrão dos h2 para evitar espaço extra */
+        }
+
+        #nome {
+            margin: -25rem 17rem 0rem 20rem;
+            color: black;
+            justify-content: center;
+        }
+
+        #chartContainer {
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -74,18 +117,22 @@
             <a href="/removeProduto" class="button">Remover Produto</a>
         </div>
     </div>
-    <div class="wine-container">
-        <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" style="height: 500px;width: auto;">
-        <div class="wine-details">
-            <h1 id="nome">Nome Vinho</h1>
-            <h2>EAN:</h2> <p id="ean">546579</p>
-            <h2>Marca:</h2> <p id="brand">546579</p>
-            <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
-            <h2>Capacidade:</h2> <p id="capacidade">546579</p>
-        </div>
-    </div>
 
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <div class="dashboard">
+        <div class="wine-container">
+            <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" style="height: 500px;width: auto;">
+                <h1 id="nome">Nome Vinho</h1>
+            <div class="wine-details">
+                <h2>EAN:</h2> <p id="ean">546579</p>
+                <h2>Marca:</h2> <p id="brand">546579</p>
+                <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
+                <h2>Capacidade:</h2> <p id="capacidade">546579</p>
+            </div>
+        </div>
+    
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+    </div>
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    
