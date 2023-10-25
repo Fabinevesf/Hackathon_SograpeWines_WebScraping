@@ -201,7 +201,7 @@
 	<div id="wine-container" class="container">
 		<% for (let wine of wines) { %>
 			<a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">
-				<div class="wine-card"">
+				<div class="wine-card">
 					<div class="wine-name">
 						<%= wine.vinho.name %>
 					</div>
@@ -221,22 +221,24 @@
 								<% if (!latestPrices[store.StoreName] || new Date(store.Date)> new
 									Date(latestPrices[store.StoreName].Date)) { %>
 									<% latestPrices[store.StoreName]=store; %>
-										<% } %>
-											<% } %>
-												<% for (let storeName in latestPrices) { %>
-													<div class="store-price">
-														<div class="store-name">
-															<%= storeName %>
-														</div>
-														<div class="store-price-value">
-															<%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %>
-														</div>
-													</div>
-													<% } %>
+								<% } %>
+						<% } %>
+						<% for (let storeName in latestPrices) { %>
+							<a href="<%= latestPrices[storeName].Link %>" style="text-decoration: none;">
+								<div class="store-price">
+									<div class="store-name">
+										<%= storeName %>
+									</div>
+										<div class="store-price-value">
+											<%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %>
+										</div>
+								</div>
+							</a>
+						<% } %>
 					</div>
 				</div>
 			</a>
-			<% } %>
+		<% } %>
 	</div>
 	<div id="table-container">
 		<div class="filter-container">
@@ -303,6 +305,10 @@
 	<!-- Inclua o CSS do DataTables -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 	<script>
+		const vinhos = <%- JSON.stringify(wines) %>[0];
+
+		console.log(vinhos);
+
 		const toggleSwitch = document.getElementById('toggle-switch');
 		const wineTable = document.getElementById('table-container');
 		const wineContainer = document.getElementById('wine-container');
