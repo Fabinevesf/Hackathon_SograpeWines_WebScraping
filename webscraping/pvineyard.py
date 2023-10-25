@@ -56,8 +56,4 @@ def get_pvineyard(ean):
 		else:
 			year = None
 	cur_time = datetime.datetime.now()
-	print(ean)
-	print(price)
-	print(discount)
-	print(currency)
-	print(cur_time)
+	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, currency, cur_time, "Portugal"]
