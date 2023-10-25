@@ -29,19 +29,19 @@
     
     </style>
      <style>
-        .wine-container {
+        .wine-prices {
             display: flex;
             align-items: center;
+            padding: 78px 116px 45px 162px;
+            background-color: pink;
         }
 
         .wine-image {
-            max-width: 500px; /* Define o tamanho máximo da imagem */
+            max-width: 50px; /* Define o tamanho máximo da imagem */
         }
 
         .wine-details {
             margin-left: 52px; /* Espaço entre a imagem e os detalhes */
-            padding: 10px 0 30px;
-
         }
 
         h2 {
@@ -60,20 +60,20 @@
                 <img src="/images/logo-42.svg" alt="42 Porto">
             </div>
         </div>
-        <div class="button-bar">
-            <a href="/" class="button">Dashboard</a>
-            <a href="/addProduto" class="button">Adicionar Produto</a>
-            <a href="/removeProduto" class="button">Remover Produto</a>
-        </div>
     </div>
-    <div class="wine-container">
+    <div class="button-bar">
+        <a href="/" class="button">Dashboard</a>
+        <a href="/addProduto" class="button">Adicionar Produto</a>
+        <a href="/removeProduto" class="button">Remover Produto</a>
+    </div>
+    <div class="wine-prices">
         <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" style="height: 500px;width: auto;">
         <div class="wine-details">
             <h1 id="nome">Nome Vinho</h1>
-            <h2>EAN:</h2> <p id="ean">546579</p>
             <h2>Marca:</h2> <p id="brand">546579</p>
             <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
             <h2>Capacidade:</h2> <p id="capacidade">546579</p>
+            <h2>EAN:</h2> <p id="ean">546579</p>
         </div>
     </div>
 
@@ -82,9 +82,10 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    
     <script>
-        // Dados JSON com os preços
-        const data = <%- JSON.stringify(resultado[0]) %>;
-        const vinho = <%- JSON.stringify(vinho) %>[0];
+// Dados JSON com os preços
+const data = JSON.stringify(resultado[0]);
+const vinho = JSON.parse(data)[0];
+
         console.log(vinho);
         // Extrair nomes únicos das lojas
         const storeNames = [...new Set(data.lojas.map(loja => loja.StoreName))];
