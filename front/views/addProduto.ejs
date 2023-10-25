@@ -73,7 +73,7 @@
         </div>
     </div>
     <h1>Adicionar produto</h1>
-    <form action="/submit" method="POST">
+    <form action="/submit" method="POST" onsubmit="return validateForm()">
         <label for="nomeVinho">Nome do Vinho:</label>
         <input type="text" id="nomeVinho" name="nomeVinho" required>
 
@@ -91,5 +91,22 @@
 
         <button type="submit">Enviar</button>
     </form>
+    <script>
+        function isEANSogrape(ean) {
+            return ean.startsWith('56010120');
+        }
+        function validateForm() {
+            const eanInput = document.getElementById("ean");
+            const ean = eanInput.value;
+
+            if (!isEANSogrape(ean)) {
+                const confirmAdd = confirm("Este item não pertence à Sogrape. Tem certeza de que deseja adicionar ao carrinho?");
+                if (!confirmAdd) {
+                    return false; // Impede o envio do formulário
+                }
+            }
+            return true; // Permite o envio do formulário
+        }
+    </script>
 </body>
 </html>
