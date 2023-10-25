@@ -70,13 +70,13 @@ ul li {
 /* Estilo para os botões na topbar */
 .button-bar .button {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 8px 8px;
     background-color: #B3B3B3;
     /* Cor secundária da Sogrape */
     color: #91630d;
     /* Cor primária da Sogrape */
     text-decoration: none;
-    margin: 0 10px;
+    margin: 10px 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
