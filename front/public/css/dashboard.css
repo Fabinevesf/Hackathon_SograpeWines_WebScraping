@@ -1,5 +1,5 @@
 body {
-    font-family: NovelSansPro,Source Sans Pro,sans-serif;
+    font-family: 'Montserrat',sans-serif;
     background-color: #d1cdcd;
     margin: 0;
     padding: 0;
@@ -93,11 +93,16 @@ ul li {
     padding: 10px;
 }
 
+.logo-left {
+    size: 50px;
+}
+
 .logo-left img,
 .logo-right img {
     height: 100px;
     width: auto;
     border-radius: 5px;
+    padding: 0px 36px;
 }
 
 .button-bar {
