@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Preços do Vinho</title>
     <style>
+        body{
+            background-color: #ebe6e0;
+        }
         .store-card {
             border: 1px solid #ccc;
             padding: 10px;
@@ -31,9 +34,7 @@
             color: #777;
         }
         /* Estilo para o título na topbar */
-    
-    </style>
-     <style>
+
 
         .dashboard {
             margin-top: 100px;
@@ -45,52 +46,49 @@
 }
 
         .wine-container {
+            display: flex;
+            flex-wrap: wrap;
             border: none;
-            border-radius: 12px;
-            margin: 20px;
-            padding: 20px;
-            color: #fff;
             box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            min-width: fit-content;
             border: 2px solid rgba(255, 166, 51, 0.493);
             border-radius: 20px;
-            font-family: 'Montserrat', sans-serif
-        }
-        .wine-container {
-             display: flex;
-             flex-wrap: wrap;
-             border-color: #fbead4;
-             background-color: #ebe6e0;
-             color: #f3e3ca;            
+            border-color: #fbead4;
+            background-color: #ebe6e0;
+            color: #f3e3ca;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .wine-image {
             max-width: 500px; /* Define o tamanho máximo da imagem */
-            display: grid;
             border-radius: 1rem;
             overflow: hidden;
             cursor: pointer;
-            display: flex;
 }
 
         .wine-details {
-            margin: 50px 50px 30px 20px; /* Espaço entre a imagem e os detalhes */
-            padding: 10px 20rem 30px 50px;
-            background-color:#f2ece9;
-            color: black;
-            border: 2px solid rgb(160, 155, 155);
-            border-radius: 50px 20px;
+            text-align: center;
+			color: black;
+			padding: 10px;
+			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: 5px;
+			margin: 0 10px;
+			/* Maior espaçamento entre os preços das lojas */
+			flex: 1;
+			max-width: fit-content;
+			transition: transform 0.3s, background-color 0.3s; /* Add smooth transitions for transform and background-color */
         }
 
         h2 {
-            margin: 0; /* Remove margens padrão dos h2 para evitar espaço extra */
+			font-size: 26px;
+			/* Texto do nome do vinho maior e mais expressivo */
+			font-weight: bold;
+			/* Texto em negrito */
+			margin-bottom: 15px;
+			/* Maior espaçamento abaixo do nome do vinho */
         }
 
         #nome {
-            margin: -25rem 17rem 0rem 20rem;
             color: black;
             justify-content: center;
         }
@@ -121,8 +119,9 @@
     <div class="dashboard">
         <div class="wine-container">
             <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" style="height: 500px;width: auto;">
-                <h1 id="nome">Nome Vinho</h1>
+                
             <div class="wine-details">
+                <h1 id="nome">Nome Vinho</h1>
                 <h2>EAN:</h2> <p id="ean">546579</p>
                 <h2>Marca:</h2> <p id="brand">546579</p>
                 <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
