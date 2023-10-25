@@ -108,6 +108,37 @@
             font-size: 16px;
             /* Tamanho da moeda um pouco menor */
         }
+
+		.filter-container {
+            margin: 20px;
+            padding: 10px;
+            background: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .filter-container select {
+            margin-right: 10px;
+        }
+
+        .filter-container button {
+            padding: 5px 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #filter-info {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #clear-filter-btn {
+            display: none;
+        }
     </style>
 </head>
 
@@ -130,9 +161,17 @@
     </div>
 
 
+	<div class="slider-container">
+		<label class="switch">
+			<input active type="checkbox" id="toggle-switch" checked>
+			<span class="slider round"></span>
+		</label>
+		<span>Visualização em Cartões</span>
+	</div>
+
 
     <h1>Lista de Produtos</h1>
-    <div class="container">
+    <div id="wine-container" class="container">
         <% for (let wine of wines) { %>
             <a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">
                 <div class="wine-card">
@@ -172,67 +211,119 @@
             </a>
             <% } %>
     </div>
+	<div id="table-container" style="display: none;width: 90%;background: lightgrey;padding: 20px;border-radius: 15px;">
+		<div class="filter-container">
+			<label for="column-filter">Filtrar por coluna:</label>
+			<select id="column-filter">
+				<option value="0">Nome</option>
+				<option value="1">Marca</option>
+				<option value="2">Submarca</option>
+				<option value="3">Capacidade (ml)</option>
+				<option value="4">EAN</option>
+				<option value="5">Loja</option>
+				<option value="6">Preço</option>
+			</select>
 
-    <label for="column-filter">Filtrar por coluna:</label>
-    <select id="column-filter">
-        <option value="0">Nome</option>
-        <option value="1">Marca</option>
-        <option value="2">Submarca</option>
-        <option value="3">Capacidade (ml)</option>
-        <option value="4">EAN</option>
-        <option value="5">Loja</option>
-        <option value="6">Preço</option>
-    </select>
-    
-    <label for="value-filter">Escolha um valor:</label>
-    <select id="value-filter">
-        <!-- Aqui você pode adicionar os valores possíveis dinamicamente usando JavaScript -->
-    </select>
-    <table id="wine-table" class="display">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Marca</th>
-                <th>Submarca</th>
-                <th>Capacidade (ml)</th>
-                <th>EAN</th>
-                <th>Loja</th>
-                <th>Preço</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (let wine of wines) { %>
-                <% const latestPrices = {}; %>
-                <% for (let store of wine.loja) { %>
-                    <% if (!latestPrices[store.StoreName] || new Date(store.Date) > new Date(latestPrices[store.StoreName].Date)) { %>
-                        <% latestPrices[store.StoreName] = store; %>
-                    <% } %>
-                <% } %>
-                <% for (let storeName in latestPrices) { %>
-                    <tr>
-                        <td><%= wine.vinho.name %></td>
-                        <td><%= wine.vinho.Brand %></td>
-                        <td><%= wine.vinho.Subbrand %></td>
-                        <td><%= wine.vinho.capacity %></td>
-                        <td><%= wine.vinho.EAN %></td>
-                        <td><%= storeName %></td>
-                        <td><%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %></td>
-                    </tr>
-                <% } %>
-            <% } %>
-        </tbody>
-    </table>
+			<label for="value-filter">Escolha um valor:</label>
+			<select id="value-filter">
+				<!-- Aqui você pode adicionar os valores possíveis dinamicamente usando JavaScript -->
+			</select>
 
+			<button id="apply-filter-btn">Aplicar Filtro</button>
+			<button id="clear-filter-btn">Limpar Filtro</button>
+			<h3>Filtros Aplicados</h3>
+			<div id="filter-info"></div>
+		</div>
+
+		<table id="wine-table" class="display">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Marca</th>
+					<th>Submarca</th>
+					<th>Capacidade (ml)</th>
+					<th>EAN</th>
+					<th>Loja</th>
+					<th>Preço</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (let wine of wines) { %>
+					<% const latestPrices = {}; %>
+					<% for (let store of wine.loja) { %>
+						<% if (!latestPrices[store.StoreName] || new Date(store.Date) > new Date(latestPrices[store.StoreName].Date)) { %>
+							<% latestPrices[store.StoreName] = store; %>
+						<% } %>
+					<% } %>
+					<% for (let storeName in latestPrices) { %>
+						<tr>
+							<td><%= wine.vinho.name %></td>
+							<td><%= wine.vinho.Brand %></td>
+							<td><%= wine.vinho.Subbrand %></td>
+							<td><%= wine.vinho.capacity %></td>
+							<td><%= wine.vinho.EAN %></td>
+							<td><%= storeName %></td>
+							<td><%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %></td>
+						</tr>
+					<% } %>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!-- Inclua o CSS do DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+	<script>
+		const toggleSwitch = document.getElementById('toggle-switch');
+		const wineTable = document.getElementById('table-container');
+		const wineContainer = document.getElementById('wine-container');
+	
+		toggleSwitch.addEventListener('change', function() {
+			if (toggleSwitch.checked) {
+				// Se o slider estiver ligado, mostra a vista em cartões e esconde a tabela
+				wineContainer.style.display = 'flex';
+				wineTable.style.display = 'none';
+			} else {
+				// Se o slider estiver desligado, mostra a tabela e esconde a vista em cartões
+				wineTable.style.display = 'block';
+				wineContainer.style.display = 'none';
+			}
+		});
+	</script>
     <script>
         $(document).ready(function () {
     var table = $('#wine-table').DataTable({
         select: true,  // Habilitar a extensão DataTables Select
     });
+
+    $('#apply-filter-btn').on('click', function () {
+		var colunas = ["Nome", "Marca", "Submarca", "Capacidade (ml)", "EAN", "Loja", "Preço"]
+        var column = $('#column-filter').val();
+        var value = $('#value-filter').val();
+        
+        // Aplicar o filtro na tabela
+        table.column(column).search(value).draw();
+
+        // Exibir texto sobre o filtro aplicado
+        var filterText = colunas[column-1] + ': ' + value + '<br>';
+        $('#filter-info').append(filterText);
+
+        // Exibir botão para remover o filtro
+        $('#clear-filter-btn').show();
+    });
+
+    $('#clear-filter-btn').on('click', function () {
+    // Limpar o filtro da tabela para todas as colunas
+    table.columns().search('').draw();
+
+    // Limpar o texto sobre o filtro aplicado
+    $('#filter-info').text('');
+
+    // Esconder o botão para remover o filtro
+    $('#clear-filter-btn').hide();
+});
 
     $('#column-filter').on('change', function () {
         var column = $(this).val();
@@ -251,12 +342,6 @@
 
         // Limpar o filtro da coluna quando a coluna muda
         table.column(column).search('').draw();
-    });
-
-    $('#value-filter').on('change', function () {
-        var column = $('#column-filter').val();
-        var value = $(this).val();
-        table.column(column).search(value).draw();
     });
 });
     </script>
