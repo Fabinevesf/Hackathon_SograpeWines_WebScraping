@@ -40,7 +40,6 @@ def main():
 	cursor.execute(sql_NAME_Query)
 	names = cursor.fetchall()
 	
-	LastEANS = count_eans(eans)
 	y = -1
 	for ean in eans:
 		y = y + 1
@@ -107,12 +106,14 @@ cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
 schedule.every(60).minutes.do(main)
 while True:
+	LastEANS = count_eans(eans)
+
 	time.sleep(5)
 	cursor.execute(sql_EAN_Query)
 	print(LastEANS)
 	eans = cursor.fetchall()
-	NewEANS = count_eans(eans)
-	print(NewEANS)
 	if NewEANS != LastEANS:
 		main()
+	NewEANS = count_eans(eans)
+	print(NewEANS)
 	schedule.run_pending()
