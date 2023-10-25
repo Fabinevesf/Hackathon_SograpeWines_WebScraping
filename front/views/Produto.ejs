@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="wine-container">
-        <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" width="500px">
+        <img id="wineimg" src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" style="height: 500px;width: auto;">
         <div class="wine-details">
             <h1 id="nome">Nome Vinho</h1>
             <h2>EAN:</h2> <p id="ean">546579</p>
@@ -131,7 +131,7 @@
         capacidade.innerHTML = vinho.capacity + ' ML';
         nome.innerHTML = vinho.name;
         // Renderizar o gráfico
-        document.getElementById("wineimg").src = "/images/" + vinho.EAN + ".png";
+        document.getElementById("wineimg").src = "/images/" + vinho.EAN + ".jpg";
 
         chart.render();
     </script>
