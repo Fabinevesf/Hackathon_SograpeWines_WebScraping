@@ -8,7 +8,7 @@ import time
 def get_continente_html(ean):
 	# Set options
 	options = webdriver.ChromeOptions()
-	#options.add_argument('--headless')
+	options.add_argument('--headless')
 
 	# Set up the webdriver
 	driver = webdriver.Chrome(options=options)
