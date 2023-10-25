@@ -1,6 +1,6 @@
 body {
     font-family: 'Montserrat',sans-serif;
-    background-color: #d1cdcd;
+    background-color: #fbead4;
     margin: 0;
     padding: 0;
     --primary: #333;
@@ -13,9 +13,19 @@ body {
     align-items: flex-start;
 }
 
+#wine-container {
+    border-color: #fbead4;
+    background-color: #ebe6e0;
+    color: #dbd7d1;
+}
+
+
 .wine-card {
     flex: 0 0 calc(33.33% - 10px); /* Adjust the width as needed */
     margin: 5px; /* Adjust the margin as needed */
+    border-color: #af5b2d;
+    background-color: #cfba92;
+    color: #efab52;
 }
 
 h1 {
@@ -64,7 +74,7 @@ ul li {
     padding: 8px 16px;
     background-color: #B3B3B3;
     /* Cor secundária da Sogrape */
-    color: #7A1435;
+    color: #91630d;
     /* Cor primária da Sogrape */
     text-decoration: none;
     margin: 0 10px;
@@ -73,7 +83,7 @@ ul li {
 }
 
 .button-bar .button.active {
-    background-color: #7A1435;
+    background-color: #91630d;
     /* Cor primária da Sogrape para o botão ativo */
     color: #FFFFFF;
     /* Texto branco para o botão ativo */
@@ -82,7 +92,7 @@ ul li {
 .button-bar .button:hover {
     background-color: #B3B3B3;
     /* Cor secundária da Sogrape ao passar o mouse */
-    color: #7A1435;
+    color: #91630d;
     /* Cor primária da Sogrape ao passar o mouse */
 }
 
