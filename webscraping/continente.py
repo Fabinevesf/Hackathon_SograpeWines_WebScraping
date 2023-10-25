@@ -28,7 +28,7 @@ def get_continente(ean):
 
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
-	cur_time = datetime.datetime.now()
+	cur_time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
 
 	try:
 		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
