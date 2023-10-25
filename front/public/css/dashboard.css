@@ -1,182 +1,203 @@
+/* ################### IMPORT FONT ############### */
+/* font-family: 'Sunflower', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
+
 body {
-    font-family: 'Montserrat',sans-serif;
-    background-color: #fbead4;
-    margin: 0;
-    padding: 0;
-    --primary: #333;
-    --secondary: #af5b2d;
+	background-color: #fbead4;
+	margin: 0;
+	padding: 0;
+	--primary: #333;
+	--secondary: #af5b2d;
 }
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 }
 
 #wine-container {
-    border-color: #fbead4;
-    background-color: #ebe6e0;
-    color: #dbd7d1;
+	border-color: #fbead4;
+	background-color: #ebe6e0;
+	color: #dbd7d1;
 }
 
 
 .wine-card {
-    flex: 0 0 calc(33.33% - 10px); /* Adjust the width as needed */
-    margin: 5px; /* Adjust the margin as needed */
-    border-color: #af5b2d;
-    background-color: #cfba92;
-    color: #efab52;
+	flex: 0 0 calc(33.33% - 10px); /* Adjust the width as needed */
+	margin: 5px; /* Adjust the margin as needed */
+	border-color: #af5b2d;
+	background-color: #cfba92;
+	color: #efab52;
 }
 
 h1 {
-    font-size: 24px;
-    color: #333;
+	font-size: 24px;
+	color: #333;
 }
 
 li {
-    list-style: none;
-    border: 1px solid #e5e5e5;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	list-style: none;
+	border: 1px solid #e5e5e5;
+	margin: 10px 0;
+	padding: 10px;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 ul {
-    padding: 0;
+	padding: 0;
 }
 
 ul li {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 
 /*TOPBAR*/
 .topbar h1 {
-    font-size: 24px;
-    color: lightgray;
-    /* Cor de texto branca */
-    margin: 0;
+	font-size: 24px;
+	color: lightgray;
+	/* Cor de texto branca */
+	margin: 0;
 }
 
 .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #fff; /* Defina a cor do texto desejada */
-    padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #fff; /* Defina a cor do texto desejada */
+	padding: 10px 0;
 }
 
 /* Estilo para os botões na topbar */
 .button-bar .button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #B3B3B3;
-    /* Cor secundária da Sogrape */
-    color: #91630d;
-    /* Cor primária da Sogrape */
-    text-decoration: none;
-    margin: 0 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+	display: inline-block;
+	padding: 8px 16px;
+	background-color: #B3B3B3;
+	/* Cor secundária da Sogrape */
+	color: #91630d;
+	/* Cor primária da Sogrape */
+	text-decoration: none;
+	margin: 0 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s;
 }
 
 .button-bar .button.active {
-    background-color: #91630d;
-    /* Cor primária da Sogrape para o botão ativo */
-    color: #FFFFFF;
-    /* Texto branco para o botão ativo */
+	background-color: #91630d;
+	/* Cor primária da Sogrape para o botão ativo */
+	color: #FFFFFF;
+	/* Texto branco para o botão ativo */
 }
 
 .button-bar .button:hover {
-    background-color: #B3B3B3;
-    /* Cor secundária da Sogrape ao passar o mouse */
-    color: #91630d;
-    /* Cor primária da Sogrape ao passar o mouse */
+   background-color: #91630d;
+	/* Cor primária da Sogrape para o botão ativo */
+	color: #FFFFFF;
+	/* Cor primária da Sogrape ao passar o mouse */
 }
 
 .logo-left,
 .logo-right {
-    display: flex;
-    align-items: center;
-    padding: 10px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
 }
 
 .logo-left {
-    size: 50px;
+	size: 50px;
 }
 
 .logo-left img,
 .logo-right img {
-    height: 100px;
-    width: auto;
-    border-radius: 5px;
-    padding: 0px 36px;
+	height: 100px;
+	width: auto;
+	border-radius: 5px;
+	padding: 0px 36px;
 }
 
 .button-bar {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
 }
 
 .button {
-    margin: 10px;
+	margin: 10px;
 }
 
 .top-bar-container
 {
-    background: rgb(175,91,45);
-    background: linear-gradient(0deg, rgba(175,91,45,1) 39%, rgba(122,20,53,1) 100%);
+	background: rgb(175,91,45);
+	background: linear-gradient(0deg, rgba(175,91,45,1) 39%, rgba(122,20,53,1) 100%);
 }
 
 /* The switch - the box around the slider */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 /* The slider */
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: .4s;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: rgb(206, 149, 50);
+	background-color: rgb(206, 149, 50);
 }
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+	border-radius: 34px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+	border-radius: 50%;
+}
+
+/* ################ NAVIGATION BAR ################### */
+	#navigation {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding:  1vh;
+		background-color: #f2f2f2;
+		}
+
+/* ################# H1 HEADER ################## */
+
+#main-title{
+	padding: 10px; 
+	font-size: 90px;
+	text-align: center;
+	font-family: 'Sunflower', 'Montserrat', sans-serif;
 }
