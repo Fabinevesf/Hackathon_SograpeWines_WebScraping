@@ -13,7 +13,7 @@ def get_continente(ean):
 		products = product_list.find_all('div', class_='product')
 		product_link = products[0].find_all('a')[0]['href']
 	except:
-		raise Exception("Product not found")
+		raise Exception("Continente: Product not found")
 	
 	response = requests.get(product_link, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, "html.parser")

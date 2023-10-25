@@ -10,6 +10,10 @@ def get_elingles(ean):
 	response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')
 
+	no_results = soup.find('span', string='Não foram encontrados resultados para o termo ')
+	if no_results:
+		raise Exception('El Corte Ingles: Product not found.')
+
 	product_link = soup.find_all('a', class_='js-product-link')[0]['href']
 	product_link = "https://www.elcorteingles.pt" + product_link
 
@@ -44,8 +48,6 @@ def get_elingles(ean):
 			if "Mililitros" in capacity:
 				capacity = capacity.split(" ")[0] + " ml"
 			break
-
-	website = "elcorteingles"
 
 	img = soup.find_all('img', class_='js-zoom-to-modal-image')[0]['src']
 	img = "https:" + img
