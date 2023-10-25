@@ -55,4 +55,4 @@ def get_granvine(ean):
 		if 'Ano da colheita: ' in title[i].text:
 			year = description[i].text
 
-	return [ean, "Granvine", year, float(price), discount, currency, datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), location]
+	return [ean, "Granvine", year, float(price), discount, currency, datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), location, url]
