@@ -11,7 +11,6 @@ def get_pvineyard(ean):
 
 	product_table = soup.find_all('section', id='products')[0]
 
-	
 	try:
 		product_link = product_table.find_all('a', class_='thumbnail product-thumbnail')[0]['href']
 	except:
@@ -57,5 +56,3 @@ def get_pvineyard(ean):
 	print(year)
 
 	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal"]
-
-get_pvineyard(5902539714364)
