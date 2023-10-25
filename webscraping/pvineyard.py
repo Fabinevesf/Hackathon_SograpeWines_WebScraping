@@ -33,32 +33,27 @@ def get_pvineyard(ean):
 		year = name[len(name) - 1]
 	else:
 		year = "N/A"
-	capacity = (soup.find_all('span', class_='ct-pdp--unit col-pdp--unit'))[0].text
-	bottle_size = capacity.split(" ")[1]
-	if "cl" in capacity:
-		if "," in capacity:
-			bottle_size = bottle_size.replace(',', '')
+	
+	data_list = soup.find_all('dl', class_='data-sheet')[0]
+	data_names = data_list.find_all('dt', class_='name')
+	data_values = data_list.find_all('dd', class_='value')
+
+	for i in range(len(data_names)):
+		if data_names[i].text == "Capacidade":
+			capacity = data_values[i].text
+			break
 		else:
-			bottle_size = bottle_size + "0"
-	if "lt" in capacity:
-		bottle_size = bottle_size.replace(',', '')
-		bottle_size = bottle_size + "00"
-	try:
-		origem = (soup.find_all('p', class_='mb-20'))[2].text
-		origem = origem.replace('\n', '')
-	except:
-		origem = "N/A"
+			capacity = None
+		if data_names[i].text == "Colheita":
+			year = data_values[i].text
+			break
+		else:
+			year = None
 	cur_time = datetime.datetime.now()
-	try:
-		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
-		discount = 1
-	except:
-		discount = 0
 	print(ean)
-	print(name)
 	print(price)
 	print(discount)
 	print(currency)
 	print(cur_time)
-	print(origem)
+
 get_pvineyard(5601012004427)
