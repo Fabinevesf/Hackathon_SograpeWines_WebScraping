@@ -21,11 +21,11 @@ def	get_auchan(ean):
 
 	try:
 		price = soup.find_all('span', class_='value')[0].text
+		price = price.replace(',', '.')
+		price = re.sub(r'[^0-9.]+', '', price)
+		price = float(price)
 	except:
 		raise Exception("Price not found")
-	price = price.replace(',', '.')
-	price = re.sub(r'[^0-9.]+', '', price)
-	price = float(price)
 
 	try:
 		capacity = soup.find_all('li', class_="attribute-values auc-pdp-regular")[0].text
