@@ -44,6 +44,7 @@ def main():
   print("Scrapping finished successfully!")
   conn.commit()
   print("Database upload completed!")
+  print(time_get() + " - Finished Scrapping...")
   cursor.close()
   conn.close()
 
@@ -54,4 +55,3 @@ while True:
     time.sleep(3601)
     print(time_get() + " - Running Scraper...")
     schedule.run_pending()
-    print(time_get() + " - Finished Scrapping...")
