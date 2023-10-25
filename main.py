@@ -18,9 +18,9 @@ sql_NAME_Query = "SELECT Name FROM wines"
 sql_insert_statement = """INSERT INTO scrape (EAN, StoreName, HarvestYear, Price, Discount, Currency, Date, Location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
 
 def time_get():
-	 now = datetime.now()
-	 current_time = now.strftime("%H:%M:%S")
-	 return current_time
+	now = datetime.now()
+	current_time = now.strftime("%H:%M:%S")
+	return current_time
 
 def main():
 	conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
