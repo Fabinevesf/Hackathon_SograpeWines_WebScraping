@@ -34,6 +34,12 @@ def get_pvineyard(ean):
 	else:
 		year = "N/A"
 	
+	try:
+		element = soup.find_all('div', class_='product-discount')[0]
+		discount = 1
+	except:
+		discount = 0
+
 	data_list = soup.find_all('dl', class_='data-sheet')[0]
 	data_names = data_list.find_all('dt', class_='name')
 	data_values = data_list.find_all('dd', class_='value')
@@ -55,5 +61,3 @@ def get_pvineyard(ean):
 	print(discount)
 	print(currency)
 	print(cur_time)
-
-get_pvineyard(5601012004427)
