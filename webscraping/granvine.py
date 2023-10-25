@@ -63,6 +63,8 @@ def get_granvine(ean):
 		if 'Ano da colheita: ' in title[i].text:
 			year = description[i].text
 
+	img = soup.find_all('img', id='magnifier-item-0')[0]['src']
+
 	#print(ean)
 	#print(year)
 	#print(price)
