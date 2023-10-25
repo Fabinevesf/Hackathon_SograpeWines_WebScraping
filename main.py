@@ -108,6 +108,8 @@ schedule.every(60).minutes.do(main)
 while True:
 	time.sleep(5)
 	cursor.execute(sql_EAN_Query)
+	print(LastEANS)
+	print(eans)
 	eans = cursor.fetchall()
 	if eans != LastEANS:
 		main()
