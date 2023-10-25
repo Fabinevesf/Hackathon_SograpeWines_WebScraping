@@ -100,6 +100,7 @@ def main():
 	#conn.close()
 
 LastEANS = 0
+NewEANS = 0
 conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
 cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
@@ -110,7 +111,8 @@ while True:
 	cursor.execute(sql_EAN_Query)
 	print(LastEANS)
 	eans = cursor.fetchall()
-	print(eans)
-	if eans != LastEANS:
+	NewEANS = count_eans(eans)
+	print(NewEANS)
+	if NewEANS != LastEANS:
 		main()
 	schedule.run_pending()
