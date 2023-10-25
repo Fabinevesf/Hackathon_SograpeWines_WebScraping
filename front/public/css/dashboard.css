@@ -1,6 +1,6 @@
 /* ################### IMPORT FONT ############### */
-/* font-family: 'Sunflower', sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
 
 body {
 	background-color: #fbead4;
@@ -199,5 +199,5 @@ input:checked + .slider {
 	padding: 10px; 
 	font-size: 90px;
 	text-align: center;
-	font-family: 'Sunflower', 'Montserrat', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
