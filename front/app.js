@@ -45,6 +45,10 @@ app.get('/addProduto', (req, res) => {
     res.render('addProduto');
 });
 
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
 app.get('/removeProduto', (req, res) => {
   res.render('removeProduto');
 });
