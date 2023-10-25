@@ -28,6 +28,24 @@
         /* Estilo para o título na topbar */
     
     </style>
+     <style>
+        .wine-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .wine-image {
+            max-width: 500px; /* Define o tamanho máximo da imagem */
+        }
+
+        .wine-details {
+            margin-left: 20px; /* Espaço entre a imagem e os detalhes */
+        }
+
+        h2 {
+            margin: 0; /* Remove margens padrão dos h2 para evitar espaço extra */
+        }
+    </style>
 </head>
 <body>
     <div class="top-bar-container">
@@ -46,7 +64,16 @@
             <a href="/removeProduto" class="button">Remover Produto</a>
         </div>
     </div>
-    <h1>Preços do Vinho em Diferentes Lojas</h1>
+    <div class="wine-container">
+        <img src="" onerror="this.src = '/images/noimg.jpg'" class="wine-image" width="500px">
+        <div class="wine-details">
+            <h1 id="nome">Nome Vinho</h1>
+            <h2>EAN:</h2> <p id="ean">546579</p>
+            <h2>Marca:</h2> <p id="brand">546579</p>
+            <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
+            <h2>Capacidade:</h2> <p id="capacidade">546579</p>
+        </div>
+    </div>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
@@ -92,7 +119,17 @@
             },
             data: chartData
         });
+        var ean = document.getElementById("ean");
+        var brand = document.getElementById("brand");
+        var subbrand = document.getElementById("subbrand");
+        var capacidade = document.getElementById("capacidade");
+        var nome = document.getElementById("nome");
 
+        ean.innerHTML = vinho.EAN;
+        brand.innerHTML = vinho.Brand;
+        subbrand.innerHTML = vinho.Subrand;
+        capacidade.innerHTML = vinho.capacity + ' ML';
+        nome.innerHTML = vinho.name;
         // Renderizar o gráfico
         chart.render();
     </script>
