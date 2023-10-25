@@ -2,212 +2,250 @@
 <html>
 
 <head>
-    <title>Dashboard de Vinhos</title>
-    <link rel="icon" href="airplane_icon_257083.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        #wine-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            /* Distribui os cartões horizontalmente */
-        }
+	<title>Dashboard de Vinhos</title>
+	<link rel="icon" href="airplane_icon_257083.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: #ebe6e0;
+		}
+ 
+		#wine-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			/* Distribui os cartões horizontalmente */
+		}
 
-        .wine-card:hover 
-        {  
-              transform: scale(1.02); /* Increase the size by 2% (1.02 is 102%) */
-        }
+		.wine-card:hover 
+		{  
+			  transform: scale(1.02); /* Increase the size by 2% (1.02 is 102%) */
+		}
 
-        .wine-card {
-            border: none;
-            border-radius: 12px;
-            margin: 20px;
-            /* Maior espaçamento entre cartões */
-            padding: 20px;
-            /* background: linear-gradient(to bottom right, #7a6f71, #494646); */
-            background-color: rgba(191, 186, 184, 0.5); /* Background color with 50% transparency */
-            color: #fff;
-            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* Centralize horizontalmente */
-            justify-content: center;
-            /* Centralize verticalmente */
-            text-align: center;
-            /* Alinhe o texto no centro */
-            min-width: fit-content;
-            max-width: 19.6%;
-            /*Mexer nisto para aumentar ou diminuir o tamanho do card*/
-        }
+		.wine-card {
+			border: none;
+			border-radius: 12px;
+			margin: 20px;
+			/* Maior espaçamento entre cartões */
+			padding: 20px;
+			/* background: linear-gradient(to bottom right, #7a6f71, #494646); */
+			background-color: rgba(191, 186, 184, 0.5); /* Background color with 50% transparency */
+			color: #fff;
+			box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			/* Centralize horizontalmente */
+			justify-content: center;
+			/* Centralize verticalmente */
+			text-align: center;
+			/* Alinhe o texto no centro */
+			min-width: fit-content;
+			max-width: 22.6%;
+			/*Mexer nisto para aumentar ou diminuir o tamanho do card*/
+		}
 
-        .wine-name {
-            font-size: 26px;
-            /* Texto do nome do vinho maior e mais expressivo */
-            font-weight: bold;
-            /* Texto em negrito */
-            margin-bottom: 15px;
-            /* Maior espaçamento abaixo do nome do vinho */
-        }
+		.wine-name {
+			font-size: 26px;
+			/* Texto do nome do vinho maior e mais expressivo */
+			font-weight: bold;
+			/* Texto em negrito */
+			margin-bottom: 15px;
+			/* Maior espaçamento abaixo do nome do vinho */
+		}
 
-        .wine-info {
-            font-size: 18px;
-            color:black;
-            /* Texto informativo maior */
-            margin-bottom: 15px;
-            /* Maior espaçamento abaixo das informações */
-        }
+		.wine-info {
+			font-size: 18px;
+			color:black;
+			/* Texto informativo maior */
+			margin-bottom: 15px;
+			/* Maior espaçamento abaixo das informações */
+		}
 
-        .store-prices {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            /* Centralize horizontalmente */
-            align-items: center;
-            /* Centralize verticalmente */
-            width: fit-content;
-            margin-top: 10px;
-            /* Maior espaçamento acima dos preços das lojas */
-        }
-        /*information of wines*/
-        .store-price {
-            text-align: center;
-            color: black;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            margin: 0 10px;
-            /* Maior espaçamento entre os preços das lojas */
-            flex: 1;
-            max-width: fit-content;
-        }
+		.store-prices {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			/* Centralize horizontalmente */
+			align-items: center;
+			/* Centralize verticalmente */
+			width: fit-content;
+			margin-top: 10px;
+			/* Maior espaçamento acima dos preços das lojas */
+		}
+		/*information of wines*/
+	   .store-price {
+			text-align: center;
+			color: black;
+			padding: 10px;
+			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: 5px;
+			margin: 0 10px;
+			/* Maior espaçamento entre os preços das lojas */
+			flex: 1;
+			max-width: fit-content;
+			transition: transform 0.3s, background-color 0.3s; /* Add smooth transitions for transform and background-color */
+		}
 
-        .store-price:hover 
-        {
-            transform: scale(1.02); /* Increase the size by 2% (1.02 is 102%) */
-        }
+		.store-price:hover {
+			transform: scale(1.02); /* Increase the size by 2% (1.02 is 102%) on hover */
+			background-color: rgba(145,99,13,255); /* Change the background color on hover */
+			color: #F2ECE9;
+		}
 
-        .store-name {
-            font-weight: bold;
-            font-size: 18px;
-            /* Texto do nome da loja maior e mais expressivo */
-            margin-bottom: 10px;
-            /* Maior espaçamento abaixo do nome da loja */
-        }
+		.store-price:focus { /* Apply a similar effect for keyboard focus */
+			transform: scale(1.02);
+			background-color: rgba(0, 0, 255, 0.2);
+		}
 
-        .store-price-value {
-            font-size: 20px;
-            /* Preço maior e mais expressivo */
-        }
+		.store-name {
+			font-weight: bold;
+			font-size: 18px;
+			/* Texto do nome da loja maior e mais expressivo */
+			margin-bottom: 10px;
+			/* Maior espaçamento abaixo do nome da loja */
+		}
 
-        .store-currency {
-            font-size: 16px;
-            /* Tamanho da moeda um pouco menor */
-        }
+		.store-price-value {
+			font-size: 20px;
+			/* Preço maior e mais expressivo */
+		}
+
+		.store-currency {
+			font-size: 16px;
+			/* Tamanho da moeda um pouco menor */
+		}
 
 		.filter-container {
-            margin: 20px;
-            padding: 10px;
-            background: #f2f2f2;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-        }
+			margin: 20px;
+			padding: 10px;
+			background: #f2f2f2;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			text-align: center;
+		}
 
-        .filter-container select {
-            margin-right: 10px;
-        }
+		.filter-container select {
+			margin-right: 10px;
+		}
 
-        .filter-container button {
-            padding: 5px 10px;
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+		.filter-container button {
+			padding: 5px 10px;
+			background: #007BFF;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 
-        #filter-info {
-            margin-top: 10px;
-            font-weight: bold;
-        }
+		#filter-info {
+			margin-top: 10px;
+			font-weight: bold;
+		}
 
-        #clear-filter-btn {
-            display: none;
-        }
-    </style>
+		#clear-filter-btn {
+			display: none;
+		}
+
+		/* ################ NAVIGATION BAR ################### */
+		#navigation {
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+			padding:  1vh;
+			background-color: #f2f2f2;
+		}
+
+		/* ################# TOGGLE TABELAS CARDS ################# */
+		.switch {
+   			position: relative;
+    		display: inline-block;
+    		width: 60px; /* Add a width for the slider */
+    		height: 34px; /* Add a height for the slider */
+		}
+
+		/* ############### TABLE CONTAINER ################# */
+		#table-container {
+			background: rgba(191, 186, 184, 0.5);
+			padding: 2vh;
+			border-radius: 17px;
+			font-family: 'Montserrat', sans-serif; text-align: center;
+		}
+		
+	</style>
 </head>
 
 <body>
-    <div class="top-bar-container" style="background-image: url('/images/wine-background.jpeg');background-size: cover;background-position: center;">
-        <div class="topbar">
-            <div class="logo-left">
-                <img src="/images/sogrape-logo.svg" alt="Sogrape-logo" style="">
-            </div>
-            <h1 style="padding: 10px; font-size: 90px; text-align: center; font-family: 'Montserrat', sans-serif;">Sogrape Dashboard</h1>
-            <div class="logo-right">
-                <img src="/images/logo-42.svg" alt="42 Porto">
-            </div>
-        </div>
-    </div>
-    <div class="button-bar" style="font-family: 'Montserrat', sans-serif">
-        <a href="/" class="button active">Dashboard</a>
-        <a href="/addProduto" class="button">Adicionar Produto</a>
-        <a href="/removeProduto" class="button">Remover Produto</a>
-    </div>
+	<div class="top-bar-container" style="background-image: url('/images/wine-background.jpeg');background-size: cover;background-position: center;">
+		<div class="topbar">
+			<div class="logo-left">
+				<img src="/images/sogrape-logo.svg" alt="Sogrape-logo" style="">
+			</div>
+			<h1 style="padding: 10px; font-size: 90px; text-align: center; font-family: 'Montserrat', sans-serif;">Sogrape Dashboard</h1>
+			<div class="logo-right">
+				<img src="/images/logo-42.svg" alt="42 Porto">
+			</div>
+		</div>
+	</div>
 
+	<div id="navigation" class="button-bar" style="font-family: 'Montserrat', sans-serif">
+		<span>Tabelas</span>
+		<label class="switch slider-container">
+   			<input type="checkbox" id="toggle-switch" checked>
+    		<span class="slider round"></span>
+		</label>
+		<span>Cards</span>
+		<a href="/" class="button button-navbar">Dashboard</a>
+		<a href="/addProduto" class="button button-navbar">Adicionar Produto</a>
+		<a href="/removeProduto" class="button button-navbar">Remover Produto</a>
+	</div>
 
-    <h1>Lista de Produtos</h1>
-    <div id="wine-container" class="container">
-        <% for (let wine of wines) { %>
-            <a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">
-                <div class="wine-card"">
-                    <div class="wine-name">
-                        <%= wine.vinho.name %>
-                    </div>
-                    <div class="wine-info">
-                        <b>Marca:</b>
-                        <%= wine.vinho.Brand %><br>
-                            <b>Submarca:</b>
-                            <%= wine.vinho.Subbrand %><br>
-                                <b>Capacidade:</b>
-                                <%= wine.vinho.capacity %> ml<br>
-                                    <b>EAN:</b>
-                                    <%= wine.vinho.EAN %><br>
-                    </div>
-                    <div class="store-prices">
-                        <% const latestPrices={}; %>
-                            <% for (let store of wine.loja) { %>
-                                <% if (!latestPrices[store.StoreName] || new Date(store.Date)> new
-                                    Date(latestPrices[store.StoreName].Date)) { %>
-                                    <% latestPrices[store.StoreName]=store; %>
-                                        <% } %>
-                                            <% } %>
-                                                <% for (let storeName in latestPrices) { %>
-                                                    <div class="store-price">
-                                                        <div class="store-name">
-                                                            <%= storeName %>
-                                                        </div>
-                                                        <div class="store-price-value">
-                                                            <%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %>
-                                                        </div>
-                                                    </div>
-                                                    <% } %>
-                    </div>
-                </div>
-            </a>
-            <% } %>
-    </div>
-	<div id="table-container" style="display: none;
-    width: 90%;
-    background: #af5b2d;
-    padding: 20px;
-    border-radius: 17px;
-    font-family: 'Montserrat', sans-serif; text-align: center;">
+	
+	<div id="wine-container" class="container">
+		<% for (let wine of wines) { %>
+			<a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">
+				<div class="wine-card"">
+					<div class="wine-name">
+						<%= wine.vinho.name %>
+					</div>
+					<div class="wine-info">
+						<b>Marca:</b>
+						<%= wine.vinho.Brand %><br>
+							<b>Submarca:</b>
+							<%= wine.vinho.Subbrand %><br>
+								<b>Capacidade:</b>
+								<%= wine.vinho.capacity %> ml<br>
+									<b>EAN:</b>
+									<%= wine.vinho.EAN %><br>
+					</div>
+					<div class="store-prices">
+						<% const latestPrices={}; %>
+							<% for (let store of wine.loja) { %>
+								<% if (!latestPrices[store.StoreName] || new Date(store.Date)> new
+									Date(latestPrices[store.StoreName].Date)) { %>
+									<% latestPrices[store.StoreName]=store; %>
+										<% } %>
+											<% } %>
+												<% for (let storeName in latestPrices) { %>
+													<div class="store-price">
+														<div class="store-name">
+															<%= storeName %>
+														</div>
+														<div class="store-price-value">
+															<%= latestPrices[storeName].Price %> <%= latestPrices[storeName].Currency %>
+														</div>
+													</div>
+													<% } %>
+					</div>
+				</div>
+			</a>
+			<% } %>
+	</div>
+	<div id="table-container">
 		<div class="filter-container">
 			<label for="column-filter">Filtrar por coluna:</label>
 			<select id="column-filter">
@@ -266,11 +304,11 @@
 			</tbody>
 		</table>
 	</div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-    <!-- Inclua o CSS do DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+	<!-- Inclua o CSS do DataTables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 	<script>
 		const toggleSwitch = document.getElementById('toggle-switch');
 		const wineTable = document.getElementById('table-container');
@@ -287,64 +325,59 @@
 				wineContainer.style.display = 'none';
 			}
 		});
-	</script>
-    <script>
-        $(document).ready(function () {
-    var table = $('#wine-table').DataTable({
-        select: true,  // Habilitar a extensão DataTables Select
-    });
 
-    $('#apply-filter-btn').on('click', function () {
+		$(document).ready(function () {
+	var table = $('#wine-table').DataTable({
+		select: true,  // Habilitar a extensão DataTables Select
+	});
+
+	$('#apply-filter-btn').on('click', function () {
 		var colunas = ["Nome", "Marca", "Submarca", "Capacidade (ml)", "EAN", "Loja", "Preço"]
-        var column = $('#column-filter').val();
-        var value = $('#value-filter').val();
-        
-        // Aplicar o filtro na tabela
-        table.column(column).search(value).draw();
+		var column = $('#column-filter').val();
+		var value = $('#value-filter').val();
+		
+		// Aplicar o filtro na tabela
+		table.column(column).search(value).draw();
 
-        // Exibir texto sobre o filtro aplicado
-        var filterText = colunas[column-1] + ': ' + value + '<br>';
-        $('#filter-info').append(filterText);
+		// Exibir texto sobre o filtro aplicado
+		var filterText = colunas[column-1] + ': ' + value + '<br>';
+		$('#filter-info').append(filterText);
 
-        // Exibir botão para remover o filtro
-        $('#clear-filter-btn').show();
-    });
+		// Exibir botão para remover o filtro
+		$('#clear-filter-btn').show();
+	});
 
-    $('#clear-filter-btn').on('click', function () {
-    // Limpar o filtro da tabela para todas as colunas
-    table.columns().search('').draw();
+	$('#clear-filter-btn').on('click', function () {
+	// Limpar o filtro da tabela para todas as colunas
+	table.columns().search('').draw();
 
-    // Limpar o texto sobre o filtro aplicado
-    $('#filter-info').text('');
+	// Limpar o texto sobre o filtro aplicado
+	$('#filter-info').text('');
 
-    // Esconder o botão para remover o filtro
-    $('#clear-filter-btn').hide();
+	// Esconder o botão para remover o filtro
+	$('#clear-filter-btn').hide();
 });
 
-    $('#column-filter').on('change', function () {
-        var column = $(this).val();
-        var uniqueValues = table.column(column).data().unique().sort();
+	$('#column-filter').on('change', function () {
+		var column = $(this).val();
+		var uniqueValues = table.column(column).data().unique().sort();
 
-        // Limpar a caixa de seleção de valores
-        $('#value-filter').empty();
+		// Limpar a caixa de seleção de valores
+		$('#value-filter').empty();
 
-        // Preencher a caixa de seleção com os valores únicos da coluna
-        $.each(uniqueValues, function (i, value) {
-            $('#value-filter').append($('<option>', {
-                value: value,
-                text: value
-            }));
-        });
+		// Preencher a caixa de seleção com os valores únicos da coluna
+		$.each(uniqueValues, function (i, value) {
+			$('#value-filter').append($('<option>', {
+				value: value,
+				text: value
+			}));
+		});
 
-        // Limpar o filtro da coluna quando a coluna muda
-        table.column(column).search('').draw();
-    });
+		// Limpar o filtro da coluna quando a coluna muda
+		table.column(column).search('').draw();
+	});
 });
-    </script>
-    
-    
-    
-    
+	</script>
 </body>
 
 </html>
