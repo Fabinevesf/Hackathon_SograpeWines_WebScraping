@@ -44,17 +44,17 @@ def get_garrafeira_soares(ean):
 			capacity *= 1000
 			capacity = int(capacity)
 			break
-	
+
 	try:
 		discount = (soup.find_all('span', class_='discount'))[0].text
 		discount = 1
 	except:
-		discount = 0	
-	
-	print("Name: " + name)
-	print("Ano: None")
-	print("Capacidade: ", capacity)
-	print("Current price is" + currency + price)
-	print(discount)
+		discount = 0
+
+	# print("Name: " + name)
+	# print("Ano: None")
+	# print("Capacidade: ", capacity)
+	# print("Current price is" + currency + price)
+	# print(discount)
 	now = datetime.datetime.now()
 	return [ean, StoreName, "0", str(price), str(discount), currency, str(now), 'Portugal']

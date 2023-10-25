@@ -12,7 +12,7 @@ def get_elingles(ean):
 
 	product_link = soup.find_all('a', class_='js-product-link')[0]['href']
 	product_link = "https://www.elcorteingles.pt" + product_link
-	
+
 	response = requests.get(product_link, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -50,16 +50,16 @@ def get_elingles(ean):
 	img = soup.find_all('img', class_='js-zoom-to-modal-image')[0]['src']
 	img = "https:" + img
 
-	print("Name: " + name)
-	print("Ano: " + str(None))
-	print("Capacidade: " + capacity)
-	print("EAN: " + str(ean))
-	print("Website: " + website)
-	print("Link: " + product_link)
-	print("Price: ", price)
-	print("Discount: " + str(discount) + "%")
-	print("Currency: " + currency)
-	print("Localização: " + str(None))
-	print("Imagem: " + img)
+	# print("Name: " + name)
+	# print("Ano: " + str(None))
+	# print("Capacidade: " + capacity)
+	# print("EAN: " + str(ean))
+	# print("Website: " + website)
+	# print("Link: " + product_link)
+	# print("Price: ", price)
+	# print("Discount: " + str(discount) + "%")
+	# print("Currency: " + currency)
+	# print("Localização: " + str(None))
+	# print("Imagem: " + img)
 	time = datetime.datetime.now()
 	return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(time), "Portugal"]

@@ -29,19 +29,19 @@ def get_continente(ean):
 	origem = (soup.find_all('p', class_='mb-20'))[2].text
 	origem = origem.replace('\n', '')
 	cur_time = datetime.datetime.now()
-	
+
 	try:
 		discount = (soup.find_all('div', class_='ct-product-tile-badge-value-wrapper col-product-tile-badge-value-wrapper ct-product-tile-badge-value-wrapper--pvpr col-product-tile-badge-value-wrapper--pvpr   '))[0].text
 		discount = 1
 	except:
-		discount = 0	
+		discount = 0
 
-	print(ean)
-	print(name)
-	print(price)
-	print(discount)
-	print(currency)
-	print(cur_time)
-	print(origem)
+	# print(ean)
+	# print(name)
+	# print(price)
+	# print(discount)
+	# print(currency)
+	# print(cur_time)
+	# print(origem)
 
 	return[ean, "Continente", 0, float(price.replace(',', '.')), discount, currency, cur_time, origem]
