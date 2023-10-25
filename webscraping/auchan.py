@@ -41,4 +41,4 @@ def	get_auchan(ean):
 	except:
 		discount = 0
 
-	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(), "Portugal"]
+	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), "Portugal", product_link]
