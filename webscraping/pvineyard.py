@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
 import datetime
 import requests
-
-#NOME ANO CAPACIDADE EAN WEBSITE LINK PREÇO MOEDA LOCALIZAÇÃO
+import re
 
 def get_pvineyard(ean):
 	url = 'https://www.portugalvineyards.com/pt/search?s=' + str(ean)
@@ -22,17 +21,8 @@ def get_pvineyard(ean):
 
 	total = soup.find_all('span', class_='ttvpopup-carrent-price')[0].text
 	total = total.replace('\n', '')
-	currency = total[0]
-	price = total[1::1]
-	discount = 0
-
-	name = soup.find_all('p', class_='product_name')[0].text
-	name = name.replace("\n", "")
-	name = name.split(" ")
-	if name[len(name) - 1].isdigit():
-		year = name[len(name) - 1]
-	else:
-		year = "N/A"
+	result = re.findall(r'[0-9,]+', total)
+	price = ''.join(result)
 	
 	try:
 		element = soup.find_all('div', class_='product-discount')[0]
@@ -52,8 +42,18 @@ def get_pvineyard(ean):
 			capacity = None
 		if data_names[i].text == "Colheita":
 			year = data_values[i].text
+			if 'NV' in year:
+				year = '0'
 			break
 		else:
 			year = None
 	cur_time = datetime.datetime.now()
-	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, currency, cur_time, "Portugal"]
+
+	# print(ean)
+	# print(price)
+	# print(discount)
+	# print(cur_time)
+	# print(capacity)
+	# print(year)
+
+	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal"]

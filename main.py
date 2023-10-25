@@ -6,6 +6,7 @@ import time
 from webscraping.continente import get_continente
 from webscraping.garrafeirasoares import get_garrafeira_soares
 from webscraping.elingles import get_elingles
+from webscraping.pvineyard import get_pvineyard
 from prettytable import PrettyTable
 x = PrettyTable()
 x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location"]
@@ -52,6 +53,14 @@ def main():
 			cursor.execute(sql_insert_statement, elingles)
 		except Exception as e:
 			print(time_get() + ' Failed to scrape El Ingles')
+			print("Message error: " + str(e))
+			pass
+		try:
+			pvineyard = get_pvineyard(ean[0])
+			x.add_row(pvineyard)
+			cursor.execute(sql_insert_statement, pvineyard)
+		except Exception as e:
+			print(time_get() + ' Failed to scrape Portugal Vineyards')
 			print("Message error: " + str(e))
 			pass
 		print(x)
