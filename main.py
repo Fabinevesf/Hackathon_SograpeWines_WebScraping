@@ -48,6 +48,7 @@ def main():
   conn.close()
 
 print("Scraper started to run at " + time_get() + "...")
+main()
 schedule.every(60).minutes.do(main)
 while True:
     time.sleep(3601)
