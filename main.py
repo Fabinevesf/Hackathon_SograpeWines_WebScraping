@@ -106,6 +106,7 @@ cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
 schedule.every(60).minutes.do(main)
 while True:
+	cursor.execute(sql_EAN_Query)
 	eans = cursor.fetchall()
 	LastEANS = count_eans(eans)
 
