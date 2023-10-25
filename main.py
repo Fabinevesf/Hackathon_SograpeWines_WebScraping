@@ -105,7 +105,7 @@ def main():
 conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
 cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
-main()
+#main()
 schedule.every(60).minutes.do(main)
 while True:
 	time.sleep(5)
