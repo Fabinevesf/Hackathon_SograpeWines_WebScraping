@@ -13,7 +13,7 @@ def	get_auchan(ean):
 	try:
 		product_link = soup.find_all('a', class_='auc-product-tile__image-container__image')[0]['href']
 	except:
-		raise Exception("Product not found")
+		raise Exception("Auchan: Product not found.")
 	
 	product_link = "https://www.auchan.pt" + product_link
 	response = requests.get(product_link)
@@ -22,7 +22,7 @@ def	get_auchan(ean):
 	try:
 		price = soup.find_all('span', class_='value')[0].text
 	except:
-		raise Exception("Price not found")
+		raise Exception("Auchan: Price not found.")
 	price = price.replace(',', '.')
 	price = re.sub(r'[^0-9.]+', '', price)
 	price = float(price)
@@ -41,4 +41,5 @@ def	get_auchan(ean):
 	except:
 		discount = 0
 
-	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(), "Portugal"]
+	time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
+	return[ean, StoreName, 0, price, discount, "€", time, "Portugal"]

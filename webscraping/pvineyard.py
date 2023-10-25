@@ -13,7 +13,7 @@ def get_pvineyard(ean):
 	try:
 		product_link = product_table.find_all('a', class_='thumbnail product-thumbnail')[0]['href']
 	except:
-		raise Exception("Product not found")
+		raise Exception("Portugal Vineyards: Product not found")
 	
 	response = requests.get(product_link + "?SubmitCurrency=1&id_currency=1", headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')

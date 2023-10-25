@@ -18,6 +18,9 @@ def get_garrafeira_soares(ean):
 	StoreName = "Garrafeira Soares"
 
 	soup = BeautifulSoup(response.content, "html.parser")
+	no_results = soup.find('h1', string='Pesquisa sem resultados ')
+	if no_results:
+		raise Exception('Garrafeira Soares: Product not found.')
 	link = soup.find_all('script')[0]
 	url_match = re.search(r"location='(.*?)'", link.text)
 	url = url_match.group(1)
