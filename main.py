@@ -12,7 +12,7 @@ from webscraping.granvine import get_granvine
 from webscraping.auchan import get_auchan
 
 x = PrettyTable()
-x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location"]
+x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location", "Link"]
 sql_EAN_Query = "SELECT EAN FROM wines"
 sql_NAME_Query = "SELECT Name FROM wines"
 sql_insert_statement = """INSERT INTO scrape (EAN, StoreName, HarvestYear, Price, Discount, Currency, Date, Location, Link) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
@@ -108,6 +108,8 @@ schedule.every(60).minutes.do(main)
 while True:
 	time.sleep(5)
 	cursor.execute(sql_EAN_Query)
+	print(LastEANS)
+	print(eans)
 	eans = cursor.fetchall()
 	if eans != LastEANS:
 		main()

@@ -147,15 +147,6 @@
 			display: none;
 		}
 
-		/* ################ NAVIGATION BAR ################### */
-		#navigation {
-    		display: flex;
-    		align-items: center;
-    		justify-content: center;
-			padding:  1vh;
-			background-color: #f2f2f2;
-		}
-
 		/* ################# TOGGLE TABELAS CARDS ################# */
 		.switch {
    			position: relative;
@@ -180,18 +171,21 @@
 </head>
 
 <body>
+	<!-- START OF TOP MENU-->
 	<div class="top-bar-container" style="background-image: url('/images/wine-background.jpeg');background-size: cover;background-position: center;">
 		<div class="topbar">
 			<div class="logo-left">
 				<img src="/images/sogrape-logo.svg" alt="Sogrape-logo" style="">
 			</div>
-			<h1 style="padding: 10px; font-size: 90px; text-align: center; font-family: 'Montserrat', sans-serif;">Sogrape Dashboard</h1>
+			<h1 id="main-title">Sogrape Dashboard</h1>
 			<div class="logo-right">
 				<img src="/images/logo-42.svg" alt="42 Porto">
 			</div>
 		</div>
 	</div>
-
+<div>
+	<a href="/login" class="button button-navbar">Login</a>
+</div>
 	<div id="navigation" class="button-bar" style="font-family: 'Montserrat', sans-serif">
 		<span>Tabelas</span>
 		<label class="switch slider-container">
@@ -199,12 +193,11 @@
 			   <span id="slider" class="slider round active"></span>
 		</label>
 		<span>Cards</span>
-		<a href="/" class="button button-navbar">Dashboard</a>
+		<a href="/" class="button button-navbar active">Dashboard</a>
 		<a href="/addProduto" class="button button-navbar">Adicionar Produto</a>
 		<a href="/removeProduto" class="button button-navbar">Remover Produto</a>
 	</div>
-
-	
+	<!-- FINIS OF TOP MENUS-->
 	<div id="wine-container" class="container">
 		<% for (let wine of wines) { %>
 			<a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;">

@@ -56,4 +56,4 @@ def get_continente(ean):
 	#print(cur_time)
 	#print(origem)
 
-	return[ean, "Continente", 0, float(price.replace(',', '.')), discount, currency, cur_time, origem, product_link]
+	return[ean, "Continente", "0", float(price.replace(',', '.')), discount, currency, cur_time, origem, product_link]
