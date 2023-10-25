@@ -9,6 +9,7 @@ from webscraping.garrafeirasoares import get_garrafeira_soares
 from webscraping.elingles import get_elingles
 from webscraping.pvineyard import get_pvineyard
 from webscraping.granvine import get_granvine
+from webscraping.auchan import get_auchan
 
 x = PrettyTable()
 x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location"]
@@ -69,6 +70,14 @@ def main():
 			granvine = get_granvine(ean[0])
 			x.add_row(granvine)
 			cursor.execute(sql_insert_statement, granvine)
+		except Exception as e:
+			print(time_get() + ' Failed to scrape Granvine')
+			print("Message error: " + str(e))
+			pass
+		try:
+			auch = get_auchan(ean[0])
+			x.add_row(auch)
+			cursor.execute(sql_insert_statement, auch)
 		except Exception as e:
 			print(time_get() + ' Failed to scrape Granvine')
 			print("Message error: " + str(e))
