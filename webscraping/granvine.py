@@ -37,8 +37,9 @@ def get_granvine(ean):
 
 	price = soup.find_all('span', class_='price')[0].text.replace('\xa0', ' ')
 	currency = price.split(' ')[1]
-	price = price.split(' ')[0]
 	price = price.replace(',', '.')
+	price = price.split(' ')[0]
+
 
 	capacity = soup.find_all('div', class_='capacity')[0]
 	capacity = capacity.find_all('span')[0].text
