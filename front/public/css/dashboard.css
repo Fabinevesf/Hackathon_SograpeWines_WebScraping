@@ -1,8 +1,10 @@
 body {
     font-family: NovelSansPro,Source Sans Pro,sans-serif;
-    background-color: #f2f2f2;
+    background-color: #d1cdcd;
     margin: 0;
     padding: 0;
+    --primary: #333;
+    --secondary: #af5b2d;
 }
 .container {
     display: flex;
