@@ -17,19 +17,27 @@ sql_EAN_Query = "SELECT EAN FROM wines"
 sql_NAME_Query = "SELECT Name FROM wines"
 sql_insert_statement = """INSERT INTO scrape (EAN, StoreName, HarvestYear, Price, Discount, Currency, Date, Location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
 
+def count_eans(eans):
+	count = 0
+	for element in eans:
+		if isinstance(element, list):
+			count += count_eans(element)
+		else:
+			count += 1
+	return count
+
 def time_get():
 	now = datetime.now()
 	current_time = now.strftime("%H:%M:%S")
 	return current_time
 
 def main():
-	conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
-	cursor = conn.cursor()
 	cursor.execute(sql_EAN_Query)
 	eans = cursor.fetchall()
 	cursor.execute(sql_NAME_Query)
 	names = cursor.fetchall()
-
+	
+	LastEANS = count_eans(eans)
 	y = -1
 	for ean in eans:
 		y = y + 1
@@ -88,13 +96,19 @@ def main():
 	conn.commit()
 	print("Database upload completed!")
 	print(time_get() + " - Finished Scrapping...")
-	cursor.close()
-	conn.close()
+	#cursor.close()
+	#conn.close()
 
+LastEANS = 0
+conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
+cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
 main()
 schedule.every(60).minutes.do(main)
 while True:
-		time.sleep(3601)
-		print(time_get() + " - Running Scraper...")
-		schedule.run_pending()
+	time.sleep(5)
+	cursor.execute(sql_EAN_Query)
+	eans = cursor.fetchall()
+	if eans != LastEANS:
+		main()
+	schedule.run_pending()
