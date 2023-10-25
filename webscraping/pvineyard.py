@@ -9,10 +9,13 @@ def get_pvineyard(ean):
 	response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')
 
-	file1 = open("myfile.txt","w")
-	file1.write(str(soup))
+	product_table = soup.find_all('section', id='products')[0]
 
-	product_link = soup.find_all('a', class_='thumbnail product-thumbnail')[0]['href']
+	
+	try:
+		product_link = product_table.find_all('a', class_='thumbnail product-thumbnail')[0]['href']
+	except:
+		raise ValueError("Could not find product")
 	response = requests.get(product_link, headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -49,11 +52,13 @@ def get_pvineyard(ean):
 			year = None
 	cur_time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
 
-	# print(ean)
-	# print(price)
-	# print(discount)
-	# print(cur_time)
-	# print(capacity)
-	# print(year)
+	print(ean)
+	print(price)
+	print(discount)
+	print(cur_time)
+	print(capacity)
+	print(year)
 
 	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal"]
+
+get_pvineyard(5902539714364)
