@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .wine-container {
             display: flex;
@@ -165,11 +166,12 @@
 
 
 	<div class="slider-container">
+        <span>Tabelas</span>
 		<label class="switch">
 			<input active type="checkbox" id="toggle-switch" checked>
 			<span class="slider round"></span>
 		</label>
-		<span>Visualização em Cartões</span>
+		<span>Cards</span>
 	</div>
 
 
@@ -214,7 +216,12 @@
             </a>
             <% } %>
     </div>
-	<div id="table-container" style="display: none;width: 90%;background: lightgrey;padding: 20px;border-radius: 15px;">
+	<div id="table-container" style="display: none;
+    width: 90%;
+    background: #af5b2d;
+    padding: 20px;
+    border-radius: 17px;
+    font-family: 'Montserrat', sans-serif; text-align: center;">
 		<div class="filter-container">
 			<label for="column-filter">Filtrar por coluna:</label>
 			<select id="column-filter">
