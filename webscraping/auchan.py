@@ -21,6 +21,9 @@ def	get_auchan(ean):
 
 	try:
 		price = soup.find_all('span', class_='value')[0].text
+		price = price.replace(',', '.')
+		price = re.sub(r'[^0-9.]+', '', price)
+		price = float(price)
 	except:
 		raise Exception("Auchan: Price not found.")
 	price = price.replace(',', '.')
@@ -41,5 +44,4 @@ def	get_auchan(ean):
 	except:
 		discount = 0
 
-	time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
-	return[ean, StoreName, 0, price, discount, "€", time, "Portugal"]
+	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), "Portugal", product_link]

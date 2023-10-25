@@ -60,4 +60,4 @@ def get_garrafeira_soares(ean):
 	# print("Current price is" + currency + price)
 	# print(discount)
 	now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
-	return [ean, StoreName, "0", str(price), str(discount), currency, str(now), 'Portugal']
+	return [ean, StoreName, "0", str(price), str(discount), currency, str(now), 'Portugal', url]

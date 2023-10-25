@@ -172,7 +172,10 @@
 			border-radius: 17px;
 			font-family: 'Montserrat', sans-serif; text-align: center;
 		}
-		
+		.slider.round.active::before
+		{
+			margin-left: 25px;
+		}
 	</style>
 </head>
 
@@ -193,7 +196,7 @@
 		<span>Tabelas</span>
 		<label class="switch slider-container">
    			<input type="checkbox" id="toggle-switch" checked>
-    		<span class="slider round"></span>
+			   <span id="slider" class="slider round active"></span>
 		</label>
 		<span>Cards</span>
 		<a href="/" class="button button-navbar">Dashboard</a>
@@ -310,16 +313,19 @@
 		const toggleSwitch = document.getElementById('toggle-switch');
 		const wineTable = document.getElementById('table-container');
 		const wineContainer = document.getElementById('wine-container');
-	
+		const slider = document.getElementById('slider');
+
 		toggleSwitch.addEventListener('change', function() {
 			if (toggleSwitch.checked) {
 				// Se o slider estiver ligado, mostra a vista em cartões e esconde a tabela
 				wineContainer.style.display = 'flex';
 				wineTable.style.display = 'none';
+				slider.classList.add("active");
 			} else {
 				// Se o slider estiver desligado, mostra a tabela e esconde a vista em cartões
 				wineTable.style.display = 'block';
 				wineContainer.style.display = 'none';
+				slider.classList.remove("active");
 			}
 		});
 

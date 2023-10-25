@@ -71,4 +71,4 @@ def get_granvine(ean):
 	#print(datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))))
 	#print(location)
 
-	return [ean, "Granvine", year, float(price), discount, currency, datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), location]
+	return [ean, "Granvine", year, float(price), discount, currency, datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), location, url]
