@@ -47,7 +47,7 @@ def get_pvineyard(ean):
 			break
 		else:
 			year = None
-	cur_time = datetime.datetime.now()
+	cur_time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
 
 	# print(ean)
 	# print(price)
