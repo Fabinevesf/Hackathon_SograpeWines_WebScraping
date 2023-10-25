@@ -56,18 +56,18 @@ def get_elspain(ean):
 	img = soup.find_all('img', class_='js-zoom-to-modal-image')[0]['src']
 	img = "https:" + img
 
-	print("wat")
-	print("Name: " + name)
-	print("Ano: " + str(None))
-	print("Capacidade: " + capacity)
-	print("EAN: " + str(ean))
-	print("Website: " + website)
-	print("Link: " + product_link)
-	print("Price: ", price)
-	print("Discount: " + str(discount) + "%")
-	print("Currency: " + currency)
-	print("Localização: " + str(None))
-	print("Imagem: " + img)
+	# print("wat")
+	# print("Name: " + name)
+	# print("Ano: " + str(None))
+	# print("Capacidade: " + capacity)
+	# print("EAN: " + str(ean))
+	# print("Website: " + website)
+	# print("Link: " + product_link)
+	# print("Price: ", price)
+	# print("Discount: " + str(discount) + "%")
+	# print("Currency: " + currency)
+	# print("Localização: " + str(None))
+	# print("Imagem: " + img)
 	date = datetime.datetime.now()
 	#return [str(ean), "El Corte Ingles", "0", str(price), str(discount), str(currency), str(date), "Spain"]
 
