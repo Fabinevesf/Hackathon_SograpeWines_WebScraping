@@ -61,16 +61,16 @@
             <div class="logo-left">
                 <img src="/images/sogrape-logo.svg" alt="Sogrape-logo" style="">
             </div>
-            <h1 style="padding: 10px; font-size: 90px; text-align: center; font-family: 'Montserrat', sans-serif;">Sogrape Dashboard</h1>
+            <h1 style="font-size: 90px; text-align: center; font-family: 'Montserrat', sans-serif;">Sogrape Dashboard</h1>
             <div class="logo-right">
                 <img src="/images/logo-42.svg" alt="42 Porto">
             </div>
         </div>
-        <div class="button-bar">
-            <a href="/" class="button">Dashboard</a>
-            <a href="/addProduto" class="button active">Adicionar Produto</a>
-            <a href="/removeProduto" class="button">Remover Produto</a>
-        </div>
+        <div id="navigation" class="button-bar" style="font-family: 'Montserrat', sans-serif">
+            <a href="/" class="button button-navbar">Dashboard</a>
+            <a href="/addProduto" class="button button-navbar active">Adicionar Produto</a>
+            <a href="/removeProduto" class="button button-navbar">Remover Produto</a>
+	    </div>
     </div>
     <h1>Adicionar produto</h1>
     <form action="/submit" method="POST" onsubmit="return validateForm()">
