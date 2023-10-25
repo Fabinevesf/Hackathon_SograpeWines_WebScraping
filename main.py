@@ -15,7 +15,7 @@ x = PrettyTable()
 x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location"]
 sql_EAN_Query = "SELECT EAN FROM wines"
 sql_NAME_Query = "SELECT Name FROM wines"
-sql_insert_statement = """INSERT INTO scrape (EAN, StoreName, HarvestYear, Price, Discount, Currency, Date, Location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+sql_insert_statement = """INSERT INTO scrape (EAN, StoreName, HarvestYear, Price, Discount, Currency, Date, Location, Link) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 def count_eans(eans):
 	count = 0
