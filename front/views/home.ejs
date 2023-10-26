@@ -208,7 +208,7 @@
 	<!-- FINIS OF TOP MENUS-->
 	<div id="wine-container" class="container">
 		<% for (let wine of wines) { %>
-			<a href="http://localhost:3000/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;width: 100%;height: 100%;">
+			<a href="http://localhost:3000/api/vinho?EAN=<%= wine.vinho.EAN %>" style="text-decoration: none;width: 100%;height: 100%;">
 				<div class="wine-card">
 					<div class="wine-name">
 						<%= wine.vinho.name %>
