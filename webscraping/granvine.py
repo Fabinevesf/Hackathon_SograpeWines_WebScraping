@@ -23,6 +23,7 @@ def get_granvine(ean):
 
 	wait = WebDriverWait(driver, 20)
 	wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button.Button[value="yes"]'))).click()
+	time.sleep(3)
 	soup = BeautifulSoup(driver.page_source, 'html.parser')
 	product_list = soup.find_all('div', class_='search results')[0]
 	products = product_list.find_all('li', class_='product-item')
@@ -37,8 +38,9 @@ def get_granvine(ean):
 
 	price = soup.find_all('span', class_='price')[0].text.replace('\xa0', ' ')
 	currency = price.split(' ')[1]
-	price = price.split(' ')[0]
 	price = price.replace(',', '.')
+	price = price.split(' ')[0]
+
 
 	capacity = soup.find_all('div', class_='capacity')[0]
 	capacity = capacity.find_all('span')[0].text
@@ -63,6 +65,8 @@ def get_granvine(ean):
 		if 'Ano da colheita: ' in title[i].text:
 			year = description[i].text
 
+	img = soup.find_all('img', class_='gallery-placeholder__image')[0]['src']
+
 	#print(ean)
 	#print(year)
 	#print(price)
@@ -70,5 +74,6 @@ def get_granvine(ean):
 	#print(currency)
 	#print(datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))))
 	#print(location)
+	#print(img)
 
 	return [ean, "Granvine", year, float(price), discount, currency, datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), location, url]

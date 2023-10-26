@@ -26,9 +26,6 @@ def	get_auchan(ean):
 		price = float(price)
 	except:
 		raise Exception("Auchan: Price not found.")
-	price = price.replace(',', '.')
-	price = re.sub(r'[^0-9.]+', '', price)
-	price = float(price)
 
 	try:
 		capacity = soup.find_all('li', class_="attribute-values auc-pdp-regular")[0].text
@@ -43,5 +40,7 @@ def	get_auchan(ean):
 		discount = 1
 	except:
 		discount = 0
+
+	img = soup.find_all('img', class_='d-block img-fluid auc-carousel__image')[0]['src']
 
 	return[ean, StoreName, 0, price, discount, "€", datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1))), "Portugal", product_link]

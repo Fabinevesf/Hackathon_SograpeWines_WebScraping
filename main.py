@@ -11,6 +11,8 @@ from webscraping.pvineyard import get_pvineyard
 from webscraping.granvine import get_granvine
 from webscraping.auchan import get_auchan
 
+LastEANS = 0
+NewEANS = 0
 x = PrettyTable()
 x.field_names = ["EAN", "Store Name",  "HarvestYear", "Price", "Discount", "Currency", "Date", "Location", "Link"]
 sql_EAN_Query = "SELECT EAN FROM wines"
@@ -32,6 +34,7 @@ def time_get():
 	return current_time
 
 def main():
+	global LastEANS
 	cursor.execute(sql_EAN_Query)
 	eans = cursor.fetchall()
 	cursor.execute(sql_NAME_Query)
@@ -99,18 +102,19 @@ def main():
 	#cursor.close()
 	#conn.close()
 
-LastEANS = 0
 conn = mysql.connector.connect(host='34.175.219.22', database='wines', user='root', password='root')
 cursor = conn.cursor()
 print("Scraper started to run at " + time_get() + "...")
-main()
+
 schedule.every(60).minutes.do(main)
 while True:
 	time.sleep(5)
 	cursor.execute(sql_EAN_Query)
 	print(LastEANS)
-	print(eans)
 	eans = cursor.fetchall()
-	if eans != LastEANS:
+	conn.commit()
+	NewEANS = count_eans(eans)
+	print(NewEANS)
+	if NewEANS != LastEANS:
 		main()
 	schedule.run_pending()

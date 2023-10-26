@@ -41,11 +41,13 @@ def get_pvineyard(ean):
 				year = '0'
 	cur_time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=1)))
 
+	img = soup.find_all('img', class_='thumb js-thumb selected')[0]['src']
+
 	#print(ean)
 	#print(price)
 	#print(discount)
 	#print(cur_time)
-	#print(capacity)
 	#print(year)
+	#print(img)
 
 	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal", product_link]
