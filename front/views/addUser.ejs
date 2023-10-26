@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <title>Adicionar novo user</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #91630d;; /* Cor da Sogrape */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #91630d;; /* Cor da Sogrape */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #8b7345; /* Cor mais escura da Sogrape para hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- START OF TOP MENU-->
+	<div class="top-bar-container" style="background-image: url('/images/wine-background.jpeg');background-size: cover;background-position: center;">
+		<div class="topbar">
+			<div class="logo-left">
+				<img src="/images/sogrape-logo.svg" alt="Sogrape-logo">
+			</div>
+			<h1 id="main-title">Sogrape Dashboard</h1>
+			<div class="logo-right">
+				<img src="/images/logo-42.svg" alt="42 Porto">
+			</div>
+		</div>
+	</div>
+
+	<div id="navigation" class="button-bar" style="font-family: 'Montserrat', sans-serif">
+		<a href="/" class="button button-navbar">Dashboard</a>
+		<a href="/addProduto" class="button button-navbar">Adicionar Produto</a>
+		<a href="/removeProduto" class="button button-navbar">Remover Produto</a>
+		<a href="/addUser" class="button button-navbar active">Registro de usuário</a>
+	</div>
+	<!-- FINIS OF TOP MENUS-->
+    <h1>Adicionar novo usuário</h1>
+    <form action="/api/register" method="POST">
+ 		<label for="name">Nome e apelido</label>
+        	<input type="text" id="name" name="name" required> 
+		<label for="username">Username</label>
+        	<input type="text" id="username" name="username" required>
+		<label for="password">Senha do usuário</label>
+			<input type="text" id="password" name="password" required>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

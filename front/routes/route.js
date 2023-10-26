@@ -49,4 +49,8 @@ app.get('/login', (req, res) => {
 app.get('/removeProduto', (req, res) => {
   res.render('removeProduto');
 });
+
+app.get('/addUser', (req, res) => {
+  res.render('addUser');
+});
 module.exports = app;
