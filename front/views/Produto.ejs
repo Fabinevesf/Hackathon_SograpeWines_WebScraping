@@ -40,12 +40,21 @@
 
         .dashboard {
             margin-top: 100px;
-            margin-bottom: 200px;
-            margin-right: 100px;
-            margin-left: 80px;
-            border: 5px solid rgba(255, 145, 0, 0.808);
-            border-radius: 20px;
-}
+            margin-bottom: 100px;
+            margin-right: 60px;
+            margin-left: 60px;
+            border: 10px solid rgba(214, 136, 33, 0.726);
+            border-radius: 5px;
+            /*Mexer nisto para aumentar ou diminuir o tamanho do card*/
+			box-shadow: 1px 1px 7px black;
+			/* animation to hover */
+			transition: transform 0.3s ease-in-out;
+            }
+
+            .dashboard:hover {
+  		    /* Scale the card by 2% on hover */
+  			    transform: scale(1.01);
+		    }
 
         .wine-container {
             display: flex;
@@ -131,16 +140,22 @@
                 <h2>Sub-Marca:</h2> <p id="subbrand">546579</p>
                 <h2>Capacidade:</h2> <p id="capacidade">546579</p>
             </div>
-        </div>
-    
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-             <label for="storeSelector">Select Store:</label>
-            <select id="storeSelector">
-                <option value="0">All Stores</option>
-
-            </select>
-            <div id="barChartContainer" width="400" height="200"></div>
+        </div>   
     </div>
+    <div class="dashboard"> 
+        <label for="storeSelector">Select Store:</label>
+        <select id="storeSelector">
+            <option value="0">All Stores</option>
+    
+        </select> 
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <br>
+        <br>
+        <br>
+        <div id="barChartContainer"></div>
+     </div> 
+
+    
 
     <script
     src="https://code.jquery.com/jquery-3.7.1.js"
@@ -170,14 +185,19 @@
         // Crie um gráfico de barras
         var chart = new CanvasJS.Chart("barChartContainer", {
             animationEnabled: true,
+            backgroundColor: null,
             title: {
-                text: "Preços por Loja"
+                text: "Preços por Loja",
             },
             axisX: {
-                title: "Loja"
+                title: "Loja",
+                lineColor: "rgba(105,105,105,.8)",
+                gridColor: "rgba(105,105,105,.8)",
+                type: "area",
             },
             axisY: {
                 title: "Preço (€)",
+                color: "rgba(255,12,32,.5)",
                 minimum: 0 // Defina o valor mínimo no eixo Y para 0
             },
             data: [{
@@ -222,6 +242,8 @@
 
         // Configuração do gráfico
         const chart1 = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            backgroundColor: null,
             title: {
                 text: "Evolução dos Preços por Loja"
             },
@@ -252,7 +274,7 @@
         nome.innerHTML = vinho.name;
         // Renderizar o gráfico
         document.getElementById("wineimg").src = "/images/" + vinho.EAN + ".jpg";
-        const allData = chart.options.data;
+        const allData = chart1.options.data;
         console.log(allData);
         document.getElementById('storeSelector').addEventListener('change', function () {
             console.log(this.value)
@@ -260,12 +282,12 @@
             {
                 const selectedStore = this.value - 1;
                 var datas = [chartData[selectedStore]];
-                chart.options.data = datas;
+                chart1.options.data = datas;
             }
             else
             {
                 console.log('aa');
-                chart.options.data = allData;
+                chart1.options.data = allData;
             }
             chart1.render();
         });

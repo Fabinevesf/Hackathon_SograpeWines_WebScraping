@@ -201,3 +201,11 @@ input:checked + .slider {
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
 }
+
+/* ----------------- Precos por loja ------------------ */
+
+#barChartContainer {
+	height: 300px; 
+	width: 100%;
+	color: rgb(180, 180, 201);
+}
