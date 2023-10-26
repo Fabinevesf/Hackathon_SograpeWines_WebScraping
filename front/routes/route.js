@@ -1,8 +1,9 @@
 var express = require('express')
 var app = express.Router()
 const axios = require('axios'); // Importe a biblioteca axios
+const autenticate = require("../guards/autenticate")
 
-app.get('/', async (req, res) => {
+app.get('/', autenticate, async (req, res) => {
   try {
     const url = 'http://localhost:3000/api/vinhos';
 
