@@ -32,6 +32,7 @@ app.get('/', async (req, res) => {
 
     // Faz a solicitação GET usando axios
     const response = await axios.get(url);
+    console.log(response.data);
 
     // Envie a resposta do site externo de volta como a resposta do seu servidor
     res.render('home', { wines: response.data }); // Renderize a página EJS com os dados da resposta
@@ -43,6 +44,27 @@ app.get('/', async (req, res) => {
 
 app.get('/addProduto', (req, res) => {
     res.render('addProduto');
+});
+
+app.get('/Produto', (req, res) => {
+  const year = 2023;
+  const month = 0; // January
+  const day = 15;
+  const hour = 14;
+
+  const filteredData = storeNames.map(storeName => ({
+      type: "line",
+      showInLegend: true,
+      name: storeName,
+      dataPoints: filterData(data, year, month, day, hour)
+          .filter(loja => loja.StoreName === storeName)
+          .map(loja => ({
+              x: new Date(loja.Date),
+              y: loja.Price
+          }))
+  }));
+
+  res.render('chart', { chartData: filteredData });
 });
 
 app.get('/login', (req, res) => {

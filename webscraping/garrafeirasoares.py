@@ -54,6 +54,9 @@ def get_garrafeira_soares(ean):
 	except:
 		discount = 0
 
+	temp = soup.find_all('a', class_='zoom')[0]
+	img = temp.find_all('img')[0]['src']
+
 	# print("Name: " + name)
 	# print("Ano: None")
 	# print("Capacidade: ", capacity)
