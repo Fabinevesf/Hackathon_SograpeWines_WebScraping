@@ -134,19 +134,79 @@
         </div>
     
         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+             <label for="storeSelector">Select Store:</label>
+            <select id="storeSelector">
+                <option value="0">All Stores</option>
 
+            </select>
+            <div id="barChartContainer" width="400" height="200"></div>
     </div>
 
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    
+
+    <script>
+        const jsonData = <%- JSON.stringify(resultado[0]) %>;
+
+        // Organize os dados e encontre o último preço de cada loja
+        var lastPrices = {};
+        jsonData.lojas.forEach(function (loja) {
+            var storeName = loja.StoreName;
+            var price = loja.Price;
+            lastPrices[storeName] = price;
+        });
+
+        var dataPoints = [];
+        for (var storeName in lastPrices) {
+            dataPoints.push({ label: storeName, y: lastPrices[storeName] });
+        }
+
+        // Crie um gráfico de barras
+        var chart = new CanvasJS.Chart("barChartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Preços por Loja"
+            },
+            axisX: {
+                title: "Loja"
+            },
+            axisY: {
+                title: "Preço (€)",
+                minimum: 0 // Defina o valor mínimo no eixo Y para 0
+            },
+            data: [{
+                type: "column",
+                dataPoints: dataPoints
+            }]
+        });
+
+        chart.render();
+    </script>
     <script>
         // Dados JSON com os preços
         const data = <%- JSON.stringify(resultado[0]) %>;
         const vinho = <%- JSON.stringify(vinho) %>[0];
-        console.log(vinho);
+        console.log(data);
         // Extrair nomes únicos das lojas
         const storeNames = [...new Set(data.lojas.map(loja => loja.StoreName))];
+        var select = document.getElementById("storeSelector");
+        var i = 1;
+        storeNames.forEach(element => {
+            var option = document.createElement("option");
 
+            // Set the value and text of the option
+            option.value = i++;
+            option.text = element;
+
+            // Append the option to the select element
+            select.appendChild(option);
+        });
         // Preparar dados para o gráfico
         const chartData = storeNames.map(storeName => ({
             type: "line",
@@ -161,7 +221,7 @@
         }));
 
         // Configuração do gráfico
-        const chart = new CanvasJS.Chart("chartContainer", {
+        const chart1 = new CanvasJS.Chart("chartContainer", {
             title: {
                 text: "Evolução dos Preços por Loja"
             },
@@ -192,8 +252,24 @@
         nome.innerHTML = vinho.name;
         // Renderizar o gráfico
         document.getElementById("wineimg").src = "/images/" + vinho.EAN + ".jpg";
-
-        chart.render();
+        const allData = chart.options.data;
+        console.log(allData);
+        document.getElementById('storeSelector').addEventListener('change', function () {
+            console.log(this.value)
+            if(this.value != 0)
+            {
+                const selectedStore = this.value - 1;
+                var datas = [chartData[selectedStore]];
+                chart.options.data = datas;
+            }
+            else
+            {
+                console.log('aa');
+                chart.options.data = allData;
+            }
+            chart1.render();
+        });
+        chart1.render();
     </script>
 </body>
 </html>
