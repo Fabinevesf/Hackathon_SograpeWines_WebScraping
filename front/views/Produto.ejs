@@ -133,9 +133,16 @@
             </div>
         </div>
     
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+            
+             </div>
+             <label for="storeSelector">Select Store:</label>
+            <select id="storeSelector">
+                <option value="0">All Stores</option>
 
+            </select>
     </div>
+
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    
@@ -143,10 +150,21 @@
         // Dados JSON com os preços
         const data = <%- JSON.stringify(resultado[0]) %>;
         const vinho = <%- JSON.stringify(vinho) %>[0];
-        console.log(vinho);
+        console.log(data);
         // Extrair nomes únicos das lojas
         const storeNames = [...new Set(data.lojas.map(loja => loja.StoreName))];
+        var select = document.getElementById("storeSelector");
+        var i = 1;
+        storeNames.forEach(element => {
+            var option = document.createElement("option");
 
+            // Set the value and text of the option
+            option.value = i++;
+            option.text = element;
+
+            // Append the option to the select element
+            select.appendChild(option);
+        });
         // Preparar dados para o gráfico
         const chartData = storeNames.map(storeName => ({
             type: "line",
@@ -192,7 +210,23 @@
         nome.innerHTML = vinho.name;
         // Renderizar o gráfico
         document.getElementById("wineimg").src = "/images/" + vinho.EAN + ".jpg";
-
+        const allData = chart.options.data;
+        console.log(allData);
+        document.getElementById('storeSelector').addEventListener('change', function () {
+            console.log(this.value)
+            if(this.value != 0)
+            {
+                const selectedStore = this.value - 1;
+                var datas = [chartData[selectedStore]];
+                chart.options.data = datas;
+            }
+            else
+            {
+                console.log('aa');
+                chart.options.data = allData;
+            }
+            chart.render();
+        });
         chart.render();
     </script>
 </body>
