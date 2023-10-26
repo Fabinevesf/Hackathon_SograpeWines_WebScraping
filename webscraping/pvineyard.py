@@ -18,11 +18,15 @@ def get_pvineyard(ean):
 	response = requests.get(product_link + "?SubmitCurrency=1&id_currency=1", headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0'})
 	soup = BeautifulSoup(response.content, 'html.parser')
 
-	total = soup.find_all('span', class_='ttvpopup-carrent-price')[0].text
-	total = total.replace('\n', '')
-	result = re.findall(r'[0-9,]+', total)
-	price = ''.join(result)
-	
+	try:
+		meta_tag = soup.find('meta', {'property': 'product:pretax_price:amount'})
+		content = meta_tag['content']
+		price = float(content)
+		price += price * 0.13
+		price = round(price, 2)
+	except:
+		raise Exception("Portugal Vineyards : Price not found")
+
 	try:
 		element = soup.find_all('div', class_='product-discount')[0]
 		discount = 1
@@ -50,4 +54,4 @@ def get_pvineyard(ean):
 	#print(year)
 	#print(img)
 
-	return[ean, "Portugal Vineyards", year, float(price.replace(',', '.')), discount, '€', cur_time, "Portugal", product_link]
+	return[ean, "Portugal Vineyards", year, price, discount, '€', cur_time, "Portugal", product_link]
