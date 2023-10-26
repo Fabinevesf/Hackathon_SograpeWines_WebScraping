@@ -20,8 +20,10 @@ router.post('/register', autenticate, async (req, res) => {
     
         const query = 'INSERT INTO logindb (username, password, fullname) VALUES (?, ?, ?)'
         connection.query(query, [username, hash, name], (err, results) => {
-            if (err) res.send('Error');
-            res.send('Added');
+            if (err)
+                res.send('Error');
+            else
+                res.send('Added');
         });
 
         //res.send({ message: 'Register successful' })
@@ -47,7 +49,7 @@ router.post('/login', async (req, res) => {
 
                 var token = jwt.sign({ user_id }, supersecret)
                 res.cookie('token', token, { httpOnly: true });
-                res.send(token )
+                res.redirect('/')
             } else {
                 res.status(400).send({ message: 'User nao existe'});
             }
@@ -56,5 +58,10 @@ router.post('/login', async (req, res) => {
       res.status(400).send({ message: err.message })
     }
   })
+
+  router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/login'); // Substitua com a página desejada
+  });
 
   module.exports = router;

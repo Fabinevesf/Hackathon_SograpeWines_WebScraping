@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 const connection = require("../model/database")
 const autenticate = require("../guards/autenticate")
 var express = require('express')
@@ -53,10 +48,13 @@ app.post('/submit', autenticate, (req, res) => {
       }else{
         const query = 'INSERT INTO wines (name, capacity, EAN, Brand, Subrand) VALUES (?, ?, ?, ?, ?)';
         connection.query(query, [dados.nomeVinho, dados.capacidade, dados.ean, dados.marca, dados.submarca], (err, results) => {
-            if (err) res.send('<script>alert("Ocurreu um erro");window.location.href = "http://localhost:3000/"</script>');
-
-            console.log('Dados inseridos com sucesso. ID do registro: ' + results.insertId);
-            res.send('<script>alert("Produto adicionado com sucesso");window.location.href = "http://localhost:3000/"</script>');
+            if (err)
+            {
+              res.send('<script>alert("Ocurreu um erro");window.location.href = "http://localhost:3000/"</script>');
+            }else{
+              console.log('Dados inseridos com sucesso. ID do registro: ' + results.insertId);
+              res.send('<script>alert("Produto adicionado com sucesso");window.location.href = "http://localhost:3000/"</script>');
+            }
           });
       }
     }
@@ -74,14 +72,20 @@ app.post('/remove', (req, res) => {
     try{
       const query = 'DELETE FROM wines WHERE EAN = ?';
       connection.query(query, [dados.ean], (err, results) => {
-          if (err) res.send('<script>alert("Ocurreu um erro");window.location.href = "http://localhost:3000/"</script>');
-
-          const query = 'DELETE FROM scrape WHERE EAN = ?';
-          connection.query(query, [dados.ean], (err, results) => {
-            if (err) res.send('<script>alert("Produto removido com sucesso");window.location.href = "http://localhost:3000/"</script>');
-
-            console.log('Dados removidos com sucesso. ID do registro: ' + results.insertId);
-            res.send('<script>alert("Produto removido com sucesso");window.location.href = "http://localhost:3000/"</script>');
+          if (err) 
+          {
+            res.send('<script>alert("Ocurreu um erro");window.location.href = "http://localhost:3000/"</script>');
+          }else{
+            const query = 'DELETE FROM scrape WHERE EAN = ?';
+            connection.query(query, [dados.ean], (err, results) => {
+              if (err){
+               res.send('<script>alert("Produto removido com sucesso");window.location.href = "http://localhost:3000/"</script>');
+              }else{
+                console.log('Dados removidos com sucesso. ID do registro: ' + results.insertId);
+                res.send('<script>alert("Produto removido com sucesso");window.location.href = "http://localhost:3000/"</script>');
+              }
+  
+          }
           });
       });
     }
@@ -91,10 +95,6 @@ app.post('/remove', (req, res) => {
     }
 });
 
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 app.get('/vinhos', async (req, res) => {
     try {
       const resultado = [];

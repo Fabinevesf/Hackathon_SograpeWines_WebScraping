@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 var express = require('express')
 var app = express.Router()
 const axios = require('axios'); // Importe a biblioteca axios
@@ -7,27 +6,6 @@ const autenticate = require("../guards/autenticate")
 app.get('/', autenticate, async (req, res) => {
   try {
     const url = 'http://localhost:3000/api/vinhos';
-=======
-<<<<<<< Updated upstream
-exports.home=function(req,res){
-  res.render('home');
-}
-
-exports.addProduto=function(req,res){
-  res.render('addProduto');
-}
-=======
-var express = require('express')
-var app = express.Router()
-const axios = require('axios'); // Importe a biblioteca axios
-const autenticate = require("../guards/autenticate")
-
-app.get('/', autenticate, async (req, res) => {
-  try {
-    const url = 'http://localhost:3000/api/vinhos';
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-
     // Faz a solicitação GET usando axios
     const response = await axios.get(url);
 
@@ -39,8 +17,8 @@ app.get('/', autenticate, async (req, res) => {
   }
 });
 
-app.get('/addProduto', (req, res) => {
-    res.render('addProduto');
+app.get('/addProduto',autenticate, (req, res) => {
+  res.render('addProduto');
 });
 
 app.get('/Produto', (req, res) => {
@@ -50,15 +28,15 @@ app.get('/Produto', (req, res) => {
   const hour = 14;
 
   const filteredData = storeNames.map(storeName => ({
-      type: "line",
-      showInLegend: true,
-      name: storeName,
-      dataPoints: filterData(data, year, month, day, hour)
-          .filter(loja => loja.StoreName === storeName)
-          .map(loja => ({
-              x: new Date(loja.Date),
-              y: loja.Price
-          }))
+    type: "line",
+    showInLegend: true,
+    name: storeName,
+    dataPoints: filterData(data, year, month, day, hour)
+      .filter(loja => loja.StoreName === storeName)
+      .map(loja => ({
+        x: new Date(loja.Date),
+        y: loja.Price
+      }))
   }));
 
   res.render('chart', { chartData: filteredData });
@@ -68,7 +46,7 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-app.get('/removeProduto', (req, res) => {
+app.get('/removeProduto',autenticate, (req, res) => {
   res.render('removeProduto');
 });
 
