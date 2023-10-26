@@ -26,6 +26,19 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
+  function promisifyQuery(sql) {
+    return new Promise((resolve, reject) => {
+      connection.query(sql, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
+
+
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });

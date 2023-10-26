@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 var express = require('express')
 var app = express.Router()
 const axios = require('axios'); // Importe a biblioteca axios
@@ -6,6 +7,26 @@ const autenticate = require("../guards/autenticate")
 app.get('/', autenticate, async (req, res) => {
   try {
     const url = 'http://localhost:3000/api/vinhos';
+=======
+<<<<<<< Updated upstream
+exports.home=function(req,res){
+  res.render('home');
+}
+
+exports.addProduto=function(req,res){
+  res.render('addProduto');
+}
+=======
+var express = require('express')
+var app = express.Router()
+const axios = require('axios'); // Importe a biblioteca axios
+const autenticate = require("../guards/autenticate")
+
+app.get('/', autenticate, async (req, res) => {
+  try {
+    const url = 'http://localhost:3000/api/vinhos';
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     // Faz a solicitação GET usando axios
     const response = await axios.get(url);

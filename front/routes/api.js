@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 const connection = require("../model/database")
 const autenticate = require("../guards/autenticate")
 var express = require('express')
@@ -86,6 +91,10 @@ app.post('/remove', (req, res) => {
     }
 });
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 app.get('/vinhos', async (req, res) => {
     try {
       const resultado = [];
