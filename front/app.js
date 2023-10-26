@@ -32,6 +32,7 @@ app.get('/', async (req, res) => {
 
     // Faz a solicitação GET usando axios
     const response = await axios.get(url);
+    console.log(response.data);
 
     // Envie a resposta do site externo de volta como a resposta do seu servidor
     res.render('home', { wines: response.data }); // Renderize a página EJS com os dados da resposta
