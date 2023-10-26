@@ -85,8 +85,9 @@ app.post('/remove', (req, res) => {
                 res.send('<script>alert("Produto removido com sucesso");window.location.href = "http://localhost:3000/"</script>');
               }
   
-          }
+          
           });
+        }
       });
     }
     catch
