@@ -110,11 +110,9 @@ schedule.every(60).minutes.do(main)
 while True:
 	time.sleep(5)
 	cursor.execute(sql_EAN_Query)
-	print(LastEANS)
 	eans = cursor.fetchall()
 	conn.commit()
 	NewEANS = count_eans(eans)
-	print(NewEANS)
 	if NewEANS != LastEANS:
 		main()
 	schedule.run_pending()
